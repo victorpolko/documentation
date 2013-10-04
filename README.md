@@ -1,1 +1,1 @@
-# This is my README
+# Things to read and to know
