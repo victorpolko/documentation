@@ -24,3 +24,11 @@
 
 # Any other view is added withinh a GET-request to a necessary view
 	get '[controllerName]/[actionName]'
+
+
+	===== LICENSE BEGIN =====
+	499642-05072013
+	00000"2pRCCKXCMuevPeoCeW44qF2Y
+	RVh0AxvOpv95AOXrDgFJp!Q5nCOAOJ
+	7wzDSx9dSUPbyN0wBKgg85MI3V3tPc
+	===== LICENSE END =====
