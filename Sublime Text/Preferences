@@ -1,0 +1,27 @@
+{
+	"auto_complete_commit_on_tab": true,
+	"bold_folder_labels": true,
+	"caret_style": "phase",
+	"color_scheme": "Packages/Color Scheme - Default/Blackboard.tmTheme",
+	"draw_minimap_border": true,
+	"ensure_newline_at_eof_on_save": true,
+	"fade_fold_buttons": false,
+	"fallback_encoding": "Cyrillic (Windows 1251)",
+	"font_size": 11,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"ignored_words":
+	[
+		"",
+		"",
+		""
+	],
+	"save_on_focus_lost": true,
+	"show_tab_close_buttons": false,
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": true
+}

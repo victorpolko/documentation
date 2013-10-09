@@ -1,0 +1,5 @@
+{
+	"high_visibility_style"	:	"outline",
+	"high_visibility_color"	:	"__bracket__",
+	"ignore_threshold"		:	true
+}
