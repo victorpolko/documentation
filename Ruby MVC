@@ -1,0 +1,26 @@
+# Ruby uses Model-View-Controller architecture with these types automatical generation
+
+1. Create a controller
+# To create a new controller
+
+	$ cd [pathToProject]
+	$ rails generate controller [controllerName]
+
+# From now on there is a [controllerName]_controller in /[pathToProject]/app/controllers/
+
+2. Define an action
+# To define a new action within it
+	def [actionName]
+		[someActions]
+	end
+
+3. Create a view
+# Then it is necessary to create a view in /[pathToProject]/app/views/[controllerName]/ with name=[actionName] and any content
+
+4. Add a route to this view
+# It is necessary to write a route to view in /[pathToProject]/config/routes.rb
+# The main page is defined with
+	root '[controllerName]#[viewName]'
+
+# Any other view is added withinh a GET-request to a necessary view
+	get '[controllerName]/[actionName]'
