@@ -16,21 +16,30 @@
 
 3. Create a view
 # Then it is necessary to create a view in /[pathToProject]/app/views/[controllerName]/ with name=[actionName] and any content
+# This content is included within <body> tag by default, or instead of <%= yield %> in layout-file. (application.html.erb by default)
 
 4. Add a route to this view
 # It is necessary to write a route to view in /[pathToProject]/config/routes.rb
 # The main page is defined with
-	root '[controllerName]#[viewName]'
+	root '[controllerName]#[actionName]'
 
 # Any other view is added withinh a GET-request to a necessary view
 	get '[controllerName]/[actionName]'
 
+# It is possible to create an alias for any controller/action pair like this
+	get '[pathInBrowser]' => '[controllerName]#[actionName]'
+# From now on we have a path like http://0.0.0:3000/pathInBrowser for this controller/action pair
 
-	Name: HackDay School
+# To insert a Ruby-code into HTML
+	#<% [someActions] %>
+	#<%= [someActionsToPrint] %>
 
-	===== LICENSE BEGIN =====
-	499642-05072013
-	00000"2pRCCKXCMuevPeoCeW44qF2Y
-	RVh0AxvOpv95AOXrDgFJp!Q5nCOAOJ
-	7wzDSx9dSUPbyN0wBKgg85MI3V3tPc
-	===== LICENSE END =====
+# A HELPER link_to creates a <a> tag with some parameters
+	#<%= link_to '[LinkName]', '[linkRef]' %>
+
+# To check all routes of project
+	$ rake routes
+
+# It is possible to generate a [linkRef] with Ruby instruments
+	#<%= link_to 'About', about_path %>
+# It is good to check the code for errors: when some action cannot be found we'll see it in the log
