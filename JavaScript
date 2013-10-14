@@ -1,28 +1,30 @@
 //V 1.To define a FUNCTION
-var functionName = function (arguments)	{
-	// {function body..}
-}
+	var functionName = function (arguments)	{
+		// {function body..}
+	}
+	//V To save this function as a text
+	var copy	=	functionName;
+	//V To save the RESULT of this function call	(brackets tell it to be called! )
+	var save	=	functionName(arguments);
 
-
-//V 2.To defina a CLASS
-function	someClass(param1,param2,paramN)	{
-	this.param1		=	param1;
-	this.param2		=	param2;
-	this.paramN		=	paramN;
-	this.setParam	=	function(newParam)	{
-		this.paramN	=	newParam;
+//V 2.To define a CLASS
+	function	someClass(prop1,prop2,propN)	{
+		this.prop1		=	prop1;
+		this.prop2		=	prop2;
+		this.propN		=	propN;
+		this.setProp	=	function(newProp)	{
+			this.propN	=	newProp;
+		};
+		//V Private attribute
+		var	privateAttr	=	true;
+		//V It is possible to return this private paprameter by means of a public function
+		this.unprivate	=	function()	{
+			return privateAttr;
+		};
 	};
-	//V Private attribute
-	var	privateAttr	=	true;
-	//V It is possible to return this private attribute by means of a public function
-	this.unprivate	=	function()	{
-		return privateAttr;
-	};
-};
-
-//V From now on it is possible to create objects based upon someClass "template"
-var c	=	new someClass('AA',23,true);
-c.setParam(false);
+	//V From now on it is possible to create objects based upon someClass "template"
+	var c	=	new someClass('AA',23,true);
+	c.setProp(false);
 
 //V 3.Check error stacktrace
 	console.log((new Error()).stack)
@@ -46,4 +48,56 @@ c.setParam(false);
 		console.log('finished');
 	}
 
-//V	6.
+//V	6.Common functions for undefined number of arguments may be got with {arguments} object
+	function sum() {
+	    var res = 0;
+	    for (var i = 0; i < arguments.length; i++) {
+	        res += arguments[i];
+	    }
+	    return res;
+	}
+	console.log(sum(3, 4));				// 7
+	console.log(sum(3, 4, 5));			// 12
+	console.log(sum(3, 4, 5, 7, 9));	// 28
+
+//V	7.Recursion in functions may be got with {arguments.callee} object
+	var factorial = function(step, res) {
+	    res = res || 1;
+	    if (step < 2) {
+	        return res;
+	    }
+	    return arguments.callee(step - 1, step * res);
+	};
+	console.log(factorial(5));			// 120
+
+//V 8.Closures are used for inner functions to have access to outer functions variables
+	var uniqueId = function() {
+	    var id = 0;
+	    return function() { return id++; };
+	}();
+	var aValue = uniqueId();
+	var anotherValue = uniqueId();
+
+//V 9.Closure for only-here usage
+	var getConstant = function() {
+	  var constants = {											//V With this method
+	    UPPER_BOUND: 100,										//V all these constants
+	    LOWER_BOUND: -100										//V are no longer accessible
+	  };														//V from anywhere
+	  return function(constantName) {							//V except this function itself!
+	    return constants[constantName];
+	  };
+	}();														//V Here it is called right after creation
+	alert(getConstant("LOWER_BOUND")); // -100
+
+//V 10.Currying example (many arguments->each argument)
+	var multNumber = function(arg) {
+	    return function(mul) {
+	        return arg * mul;
+	    };
+	};
+	var multFive = multNumber(5);
+	console.log(multFive(7));			//35
+
+//V 11.
+
