@@ -1,5 +1,7 @@
 Open A Terminal												Alt+Ctrl+T
 Goto														cd
+Goto previous location										cd -
+Go 1 level up												cd ..
 Stop a process												Ctrl+C
 Search for commands											Ctrl+R
 Send a process to background								Ctrl+Z

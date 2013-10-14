@@ -1,0 +1,49 @@
+//V 1.To define a FUNCTION
+var functionName = function (arguments)	{
+	// {function body..}
+}
+
+
+//V 2.To defina a CLASS
+function	someClass(param1,param2,paramN)	{
+	this.param1		=	param1;
+	this.param2		=	param2;
+	this.paramN		=	paramN;
+	this.setParam	=	function(newParam)	{
+		this.paramN	=	newParam;
+	};
+	//V Private attribute
+	var	privateAttr	=	true;
+	//V It is possible to return this private attribute by means of a public function
+	this.unprivate	=	function()	{
+		return privateAttr;
+	};
+};
+
+//V From now on it is possible to create objects based upon someClass "template"
+var c	=	new someClass('AA',23,true);
+c.setParam(false);
+
+//V 3.Check error stacktrace
+	console.log((new Error()).stack)
+
+//V	4.Instead of using multistring things like:
+	var f = function(a)	{return [0, a, 2*a]};
+	var t = f(1);
+	var result = t[2];	// 2
+
+//	it is possible to use a shortcut, in this case:
+	var result = function(a){return [0,a,2*a]}(1)[2];
+
+//V 5.Construction try->catch->finally
+	try {
+		//V {Code to be checked for exceptions (syn. success)}
+	}	catch	(error)	{
+		//V {Code to be executed if there are some (syn. error)}
+		throw error;	//V Throw an exception (usually to the console)
+	}	finally	{
+		//V {Code to be executed anyway (syn. to callback)}
+		console.log('finished');
+	}
+
+//V	6.
