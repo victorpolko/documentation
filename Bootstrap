@@ -1,0 +1,8 @@
+# Bootstrap uses a module grid system, which divides the viewable area into 12 columns.
+
+	<div class="row">							#	This is a module row
+		<div class="span8"><%= yield %></div>	#	span8 says that this div's width is 8/12 of 100%
+		<div class="span4">Side chain</div>		#	span4 says that this div's width is 4/12 of 100%
+	</div>										#
+
+# Bootstrap advises to use a div.container to insert inner header, content (yield) and footer for this grid system to work.

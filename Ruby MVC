@@ -30,16 +30,97 @@
 	get '[pathInBrowser]' => '[controllerName]#[actionName]'
 # From now on we have a path like http://0.0.0:3000/pathInBrowser for this controller/action pair
 
-# To insert a Ruby-code into HTML
+Working tools:
+
+# 1. To insert a Ruby-code into HTML
 	#<% [someActions] %>
 	#<%= [someActionsToPrint] %>
 
-# A HELPER link_to creates a <a> tag with some parameters
+# 2. A HELPER link_to creates a <a> tag with some parameters
 	#<%= link_to '[LinkName]', '[linkRef]' %>
 
-# To check all routes of project
+# 3. To check all routes of project
 	$ rake routes
 
-# It is possible to generate a [linkRef] with Ruby instruments
+# 4. It is possible to generate a [linkRef] with Ruby instruments
 	#<%= link_to 'About', about_path %>
 # It is good to check the code for errors: when some action cannot be found we'll see it in the log
+
+
+# 4. Model is a template for database records. To create a model
+	$ rails g Category	#	in singular!!
+# After that two important files appear in project:
+	# /models/category.rb/
+	# /db/migrate/create_categories
+
+# 5. Migrations are manually pre-created changes in database.
+# After a model was created it is necessary to run migrations, because otherwise model will link to nowhere
+	$ rake db:migrate
+# Migration may be rolled back
+	$ rake db:rollback
+
+# 6. Controller for this model should be created
+	$ rails g controller Categories	#	in plural!!
+# Actions inside this controller will manage our model
+# Ruby defines 7 names for stadard operations
+	index		#	show all records
+	new			#	create a record
+	create		#	create a record and save it to DB
+	edit		#	edit a record
+	update		#	refresh a record
+	show		#	show certain record
+	destroy		#	delete a record
+# For example, index action:
+	def method_name
+		@category	=	Category.all
+		# @ means that this variable is seen inside corresponding view (index.html.erb)
+		# Category.all shows all records (as with the console)
+	end
+
+# In index.html.erb (no comments)
+#	<h1>Categories</h1>
+#
+#	<table class="table">
+#		<%	@categories.each do |category|	%>
+#			<tr>
+#				<td><%=	category.name	%></td>
+#			</tr>
+#		<%	end	%>
+#	</table>
+#
+#	<%= link_to	'Create a new category', new_category_path, class: 'btn btn-#primary'	%>
+
+# To add all routes for these actions fast, in routes.rb
+	resources :categories
+
+# This will automatically create all necessary paths
+#	Prefix Verb   URI Pattern                    Controller#Action
+#	         root GET    /                              welcome#index
+#	        about GET    /about(.:format)               welcome#about
+#	     contacts GET    /contacts(.:format)            about#contacts
+#	         team GET    /team(.:format)                about#team
+#	     products GET    /products(.:format)            about#products
+#	   categories GET    /categories(.:format)          categories#index
+#	              POST   /categories(.:format)          categories#create
+#	 new_category GET    /categories/new(.:format)      categories#new
+#	edit_category GET    /categories/:id/edit(.:format) categories#edit
+#	     category GET    /categories/:id(.:format)      categories#show
+#	              PATCH  /categories/:id(.:format)      categories#update
+#	              PUT    /categories/:id(.:format)      categories#update
+#	              DELETE /categories/:id(.:format)      categories#destroy
+
+# 7. Ruby allows to work with project at the console mode, in which it's possible to manage all defined actions, controllers, create records, update database etc.
+# To run the console
+	$ rails c
+# To see all DB
+	> Category.all
+# To create a new record inside a variable (not in DB)
+	> cat = Category.new
+# This now may be changed in any way
+	> cat.name = 'Phones'
+# After session end every change that was not saved to DB will be lost.
+	> cat.save
+# It's possible to create a record in DB in one line
+	> Category.create name: 'Phones'
+# To delete first DB record
+	> Category.all.first.destroy
