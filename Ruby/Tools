@@ -1,0 +1,43 @@
+1. To insert a Ruby-code into HTML
+	#<% [someActions] %>
+	#<%= [someActionsToPrint] %>
+
+2. A HELPER link_to creates an <a> tag with some parameters
+	#<%= link_to '[LinkName]', '[linkRef]' %>
+
+3. To check all routes of project
+	$ rake routes
+
+4. It is possible to generate a [linkRef] with Ruby instruments
+	#<%= link_to 'About', about_path %>
+# It is good to check the code for errors: when some action cannot be found we'll see it in the log
+
+5. Ruby allows to work with project at the console mode, in which it is possible to manage all defined actions, controllers, create records, update database etc.
+# To run the console
+	$ rails c
+# To see all DB
+	> Category.all
+# To create a new record inside a variable (not in DB)
+	> cat = Category.new
+# This now may be changed in any way
+	> cat.name = 'Phones'
+# After session end every change that was not saved to DB will be lost.
+	> cat.save
+# It's possible to create a record in DB in one line
+	> Category.create name: 'Phones'
+# To delete first DB record
+	> Category.all.first.destroy
+# To find a record by id
+	> Category.find(2)
+
+6. Edit category
+	edit_category_path(id: category.id)
+	# This is because in routes /categories/:id/edit(.:format) there is a parameter for this
+
+7. Delete something
+	# link_to 'Delete something', @something, method: :delete, confirm:	'Sure?'
+
+8. Symbol
+	# Anything starting with ':' is called a symbol. It is always only 1 byte length in RAM
+	:minimum => 3	# is the same as
+	minimum: 3

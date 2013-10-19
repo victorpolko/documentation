@@ -1,0 +1,16 @@
+0.	Add a folder in [pathToFolder]			#
+1.	sudo -i									#	Switch to root
+2.	cd /etc/								#	Go to /etc/
+3.	mc										#	Launch Midnight Commander
+4.	/apache2/sites-available				#	Go to {sites-available} folder
+5.	Shift+F5								#	Copy a .conf file
+6.	F3										#	Edit it
+7.	i										#	INSERT mode
+8.	DocumentRoot	[pathToFolder]			#
+	ServerName		[nameInBrowser]			#
+	ErrorLog		[pathToLog]				#
+	Directory		[pathToFolder]			#
+9.	ln -s [.conf]							#	Create a link to this .conf file in {sites-enabled} folder
+10.	{Find}	/etc/hosts	F3					#	Go to hosts and change it
+11.	127.0.0.1	[ServerName]				#	Define a host for this host
+12. sudo service apache2 restart			#	Restart web-server
