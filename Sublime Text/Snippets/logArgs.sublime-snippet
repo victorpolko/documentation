@@ -1,0 +1,18 @@
+<snippet>
+	<content><![CDATA[
+console.log('a');
+console.log(a);
+console.log('b');
+console.log(b);
+console.log('c');
+console.log(c);
+console.log('d');
+console.log(d);
+console.log('e');
+console.log(e);
+console.log('f');
+console.log(f);
+]]></content>
+	<tabTrigger>cons</tabTrigger>
+	<!-- <scope>source.python</scope> -->
+</snippet>

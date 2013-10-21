@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+var ${1:functionName}	=	function(${2:args})	{
+	${3://functionBody}
+};
+]]></content>
+	<tabTrigger>f</tabTrigger>
+	<!-- <scope>source.python</scope> -->
+</snippet>

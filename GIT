@@ -1,0 +1,15 @@
+git	global --config user.name	"Victor P."
+git	global --config user.email	viktor_polko@mkechinov.ru
+git	init											#	Initialize an empty .git repo in current folder
+git	clone [pathToRepo]								#	Clone a repo to this folder
+git	add .											#	Add files to be tracked to stage
+git	reset											#	Remove files from stage
+git	commit											#	Commit staged files
+git	pull											#	Pull changes from remote repo
+git	push											#	Push commits to repo
+git	diff											#	Watch changes since last commit
+git	log												#	Watch all commits history
+git	stash	[list, apply, clear]					#	Stash changes since last commit
+git	checkout [fileName, --all	|| . ]				#	Reset file state from the last pull
+git	checkout [branchName]							#	Switch to other repo branch
+git	update-index --assume-unchanged [pathToFile]	#	Add a file to gitignore
