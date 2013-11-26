@@ -5,3 +5,10 @@
 cap	[servername]	deploy
 
 Severname is usually defined in some configs.
+
+Capistrano creates two folders and a symlink:
+  1. /releases with all deployed releases
+  2. /shared for common files
+  3. current as a symlink for last release
+
+For any dynamical content it is necessary to write shared_children in deploy.rb. Otherwise all changes will be lost in the next deployment.
