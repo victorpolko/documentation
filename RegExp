@@ -7,7 +7,7 @@
 	// This way is used when the expression isn't known beforehand (taken from input)
 
 
-// Special characters
+/* Special characters
 	'\' 	when applied to a non-special character, indicates that it is special
 		e.g.: /\b/ means 'word boundary'
 			when applied to a special character, indicates that it is non-special
@@ -57,6 +57,10 @@
 	'[xyz]'	matches the character set. This pattern type matches any one of the characters in the brackets, including escape sequences. Special characters like the dot(.) and asterisk (*) are not special inside a character set, so they don-t need to be escaped. One can specify a range of characters using a hyphen
 		e.g.: [a-d] performs the same match as [abcd]: matches the 'b' in "brisket" and the 'c' in "city". The patterns /[a-z.]+/ and /[\w.]+/ match the entire string "test.i.ng"
 
+	'[a-z-[aouie]]'	matches any single consonant. Subtraction class must always be last in class.
+		e.g.:	[a-[123]-d] is wrong
+				[a-d-[123]] is correct
+
 	'[^xyz]'	is a negated or complemented character set: it matches anything that is not enclosed in the brackets. You can specify a range of characters by using a hyphen. Everything that works in the normal character set also works here
 		e.g.: [^abc] is the same as [^a-c]: match 'r' in "brisket" and 'h' in "chop" because no '+' after
 
@@ -82,6 +86,18 @@
 
 	'\f'	matches a form feed (U+000C)
 
+	'\h'	matches all spaces and no returns (\n)
+		e.g.: /\h/ matches ' ' in "B2 is the suite number"
+
+	'\H'	matches all non-space characters and returns (\n)
+		e.g.: /\H/ matches '{\n}' in "B2{\n} dsds sd"
+
+	'\l'	matches all lower-case letters
+		e.g.: /\l/ matches 'a' in "B2987298374 abcd efg tre"
+
+	'\L'	matches all upper-case letters, digits, marks, \t, \n (all !lower-case letters)
+		e.g.: /\L/ matches '2' in "2987298374 abcd efg tre"
+
 	'\n'	matches a line feed (U+000A)
 
 	'\r'	matches a carriage return (U+000D)
@@ -94,7 +110,17 @@
 
 	'\t'	matches a tab (U+0009)
 
+	'\uhhhh'matches the character with the Unicode hhhh (four hexadecimal digits).
+
+	'\u'	matches all upper-case letters
+		e.g.: /\u/ matches 'S' in "2987298374 abcd S efg tre"
+
+	'\U'	matches all !upper-case letters)
+		e.g.: /\L/ matches '2' in "2987298374 abcd efg tre"
+
 	'\v'	matches a vertical tab (U+000B)
+
+	'\V'	matches !vertical tab
 
 	'\w'	matches any alphanumeric character including the underscore. Equivalent to [A-Za-z0-9_]
 		e.g.: /\w/ matches 'a' in "apple," '5' in "$5.28," and '3' in "3D."
@@ -107,11 +133,12 @@
 
 	'\0'	matches a NULL (U+0000) character. Do not follow this with another digit, because \0<digits> is an OCTAL ESCAPE SEQUENCE
 
-	'\xhh'	matches the character with the code hh (two hexadecimal digits)
+	'\xhh'	matches the character with the Unicode hh (two hexadecimal digits)
 
-	'\uhhhh'matches the character with the code hhhh (four hexadecimal digits).
+	'\Q..\E'match an exact string
+		'\Q/*\ds\E' matches '/*\ds' in 1321321/*\dsssdf*/
 
-'//Methods
+//Methods
 
 	exec:	a RegExp method that executes a search for a match in a string.
 			Returns: array of information
