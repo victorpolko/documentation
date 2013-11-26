@@ -1,15 +1,26 @@
 git	global --config user.name	"Victor P."
 git	global --config user.email	viktor_polko@mkechinov.ru
-git	init											#	Initialize an empty .git repo in current folder
-git	clone [pathToRepo]								#	Clone a repo to this folder
-git	add .											#	Add files to be tracked to stage
-git	reset											#	Remove files from stage
-git	commit											#	Commit staged files
-git	pull											#	Pull changes from remote repo
-git	push											#	Push commits to repo
-git	diff											#	Watch changes since last commit
-git	log												#	Watch all commits history
-git	stash	[list, apply, clear]					#	Stash changes since last commit
-git	checkout [fileName, --all	|| . ]				#	Reset file state from the last pull
-git	checkout [branchName]							#	Switch to other repo branch
-git	update-index --assume-unchanged [pathToFile]	#	Add a file to gitignore
+git	init											                               #	Initialize an empty .git repo in current folder
+git clone [pathToRepo]                                       #  Clone a repo to this folder
+git add .                                                    #  Add files to be tracked to stage
+git reset                                                    #  Remove files from stage
+git commit                                                   #  Commit staged files
+git pull                                                     #  Pull changes from remote repo
+git push                                                     #  Push commits to repo
+git diff                                                     #  Watch changes since last commit
+git log                                                      #  Watch all commits history
+git stash [list, apply, clear]                               #  Stash changes since last commit
+git checkout [fileName, --all || . ]                         #  Reset file state from the last pull
+git br -a                                                    #  List all branches
+git checkout [branchName]                                    #  Switch to other repo branch
+git update-index --assume-unchanged [pathToFile]             #  Add a file to gitignore
+git commit -am "Commit message"                              #  Add all files and commit changes with message
+
+# Task branching
+    git checkout -b [temporaryBranchName]                    #  Create new branch for task and switch to it
+  # make some changes + CREATE some commits
+    git checkout develop                                     #  Switch to develop branch
+    git pull                                                 #  Pull changes from origin
+    git merge --no-ff [temporaryBranchName]                  #  Merge new branch to develop with new COMMON commit for all its commits
+    git push                                                 #  Push changes to develop
+    git branch -d [temporaryBranchName]                      #  Delete this branch
