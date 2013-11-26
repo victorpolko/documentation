@@ -1,0 +1,22 @@
+# To deploy over stage
+  bundle exec cap staging deploy
+
+# If there are any migrations to run
+  bundle exec cap staging deploy:migrations && bundle exec cap staging deploy
+
+
+
+1. Setup capistrano for new project
+  cap setup
+2. Run project
+  cap deploy:cold
+3. Every next deployment
+  cap deploy
+4. Get onto server
+  ssh rails@188.138.108.75
+5. Get into current_version directory
+  cd ~/professionals_stage/current/
+  alias: prof_dir
+6. Run console
+  prof_dir && RAILS_ENV=staging bundle exec rails c
+  alias: prof_c

@@ -1,0 +1,209 @@
+// Ruby uses SCSS stylesheets -> Sassy Css -> Syntactically Awesome Stylesheets
+// It has much better syntax than simple css does
+// All these comments will not be complied to CSS
+/* But these will */
+// ! As will this
+
+1. Variables for DRY
+  $font-stack   :    Helvetica, sans-serif;
+  $primary-color: #333;
+
+  body {
+    font    : 100% $font-stack;
+    color   : $primary-color;
+  }
+
+2. Nesting
+  nav {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li { display: inline-block; }
+
+    a {
+      display: block;
+      padding: 6px 12px;
+      text-decoration: none;
+    }
+  }
+
+3. Partial
+  // It is possible to use a partial SASS-file, e.g. _some_partial.scss
+  // To recall it in other file
+    @import "some_partial"
+
+4. Mixins
+  // Mixins allow to create declarations to use in many places
+  @mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+         -o-border-radius: $radius;
+            border-radius: $radius;
+  }
+
+  ....
+
+  .box { @include border-radius(10px) }
+
+5. Extend / Inheritance
+  // Extend allows to share a set of CSS from one selector to another
+  .message {
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: #333;
+  }
+
+  .success {
+    @extend .message;           // Links to message class style!!!
+    border-color: green;
+  }
+
+  .error {
+    @extend .message;           // Links to message class style!!!
+    border-color: red;
+  }
+
+  .warning {
+    @extend .message;           // Links to message class style!!!
+    border-color: yellow;
+  }
+
+6. Operators
+  // Doing Math actions may be very helpful in styles
+  // SASS knows how to '+' '-' '*' '/' '%'
+  .container { width: 100%; }
+
+  article[role="main"] {
+    float: left;
+    width: 600px / 960px * 100%;
+  }
+
+  aside[role="complimentary"] {
+    float: right;
+    width: 300px / 960px * 100%;
+  }
+
+  // =>
+                                                              .container {
+                                                                width: 100%;
+                                                              }
+
+                                                              article[role="main"] {
+                                                                float: left;
+                                                                width: 62.5%;
+                                                              }
+
+                                                              aside[role="complimentary"] {
+                                                                float: right;
+                                                                width: 31.25%;
+  // It is possible to operate over colors and different values
+  p {                                   // 01 + 04 = 05, 02 + 05 = 07, and 03 + 06 = 09
+    color: #010203 + #040506;           // color: #050709;
+  }
+
+7. Referencing parent selector
+  // It is possible to reference it with &
+  a {
+    font-weight     : bold;
+    text-decoration : none;
+    &:hover { text-decoration: underline; }
+    body.firefox & { font-weight: normal; }
+  }
+
+8. Nested properties
+  // Such properties as font-size, font-weight, font-stack etc. may be written much faster and more understandable
+  .funky {                            .funky {
+    font: {                             font-family : fantasy;
+      family  : fantasy;                  font-size   : 30em;
+      size    : 30em;                       font-weight : bold; }
+      weight  : bold;
+    }
+  }
+
+9. Conditionals
+  // SASS knows how to manage if expressions!
+  p {                                                     p {
+    @if 1 + 1 == 2 { border: 1px solid;  }                  border: 1px solid
+    @if 5 < 3      { border: 2px dotted; }                }
+    @if null       { border: 3px double; }
+  }
+
+  // else if
+  $type: monster;
+  p {
+    @if $type == ocean {
+      color: blue;
+    } @else if $type == matador {
+      color: red;
+    } @else if $type == monster {
+      color: green;
+    } @else {
+      color: black;
+    }
+  }
+
+10. Iterations
+  // SASS is Awesome
+  // FOR
+  @for $i from 1 through 3 {
+    .item-#{$i} { width: 2em * $i; }
+  }
+
+  // =>
+  .item-1 {
+    width: 2em; }
+  .item-2 {
+    width: 4em; }
+  .item-3 {
+    width: 6em; }
+
+  // EACH
+  @each $animal in puma, sea-slug, egret, salamander {
+    .#{$animal}-icon {
+      background-image: url('/images/#{$animal}.png');
+    }
+  }
+
+  // =>
+  .puma-icon {
+    background-image: url('/images/puma.png'); }
+  .sea-slug-icon {
+    background-image: url('/images/sea-slug.png'); }
+  .egret-icon {
+    background-image: url('/images/egret.png'); }
+  .salamander-icon {
+    background-image: url('/images/salamander.png'); }
+
+  // WHILE
+  $i: 6;
+  @while $i > 0 {
+    .item-#{$i} { width: 2em * $i; }
+    $i: $i - 2;
+  }
+
+  // =>
+  .item-6 {
+    width: 12em; }
+
+  .item-4 {
+    width: 8em; }
+
+  .item-2 {
+    width: 4em; }
+
+11. Functions
+  //
+  $grid-width: 40px;
+  $gutter-width: 10px;
+
+  @function grid-width($n) {
+    @return $n * $grid-width + ($n - 1) * $gutter-width;
+  }
+
+  #sidebar { width: grid-width(5); }                =>          #sidebar { width: 240px; }
+
+
