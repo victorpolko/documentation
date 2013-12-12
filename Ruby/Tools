@@ -53,41 +53,42 @@
 		end
 	end
 	p = Puppy.new
-	p.say															# => nil
+	p.say														# => nil
 
 	# class is a CONSTANT which relates to Class object instance
 
 	tell = "woof woof!"
-	Puppy = Class.new do							# => Define an ANONYMOUS CLASS
+	Puppy = Class.new do						# => Define an ANONYMOUS CLASS
 	  define_method(:say) do
 	    puts tell											# tell is visible ONLY because is called within a BLOCK
 	  end
 	end
-	puts b.class  										# => Class
-	puts("aaa")												# => "aaa"
-	p = Puppy.new											# From now on this is class Puppy
-	p.say															# => "woof woof!"
+	puts b.class  									# => Class
+	puts("aaa")											# => "aaa"
+	p = Puppy.new										# From now on this is class Puppy
+	p.say														# => "woof woof!"
 
 10. Block
 	# Block is something within {} or do-end pair
-	# It is a bunch of code which can be executed anywhere
+	# It is a bunch of code which can be passed to a method
 	class Array
 	  def map2
 	    arr = []
 	    self.each do |a|
-	      arr << yield(a)		# => This 'yield' passes 'a' to a block-as-arg and returns its evaluation result
+	      arr << yield(a)		# => This 'yield' passes 'a' as a placeholder only (placeholder may be different) to a block-as-arg and returns its evaluation result right here
 	    end
 	    arr
 	  end
 	end
 	c = 3
-	p (1..5).to_a.map2{|b| b**2 + c } # => [5,7,12,19,28]
+	p (1..5).to_a.map2 { |b| b**2 + c } # => [4,7,12,19,28]
 
-	# Which is terrifying for our brain
+	# Variable 'c' was sfound within this block, placeholder 'b' was instead 'a'
+	# Which is so terrifying for our brain!!!
 
 11. Lambdas
 	# The only way in Ruby to pass a function as argument is to pass it as lambda
-	# lambda is alias for anonymous function, which is able to be called afterwards
+	# lambda is alias for anonymous function or Proc, which is able to be called afterwards
 	# it is the way to write a block to a variable WITH CLOSURE
 	class Array
 	  def map2
@@ -102,10 +103,12 @@
 	block_object = ->(b){ b**2 + c }		#	this is lambda
 	block_object = {|b| b**2 + c }			#	this is lambda as well
 
-	p (1..5).to_a.map2 &block_object		# => [4, 7, 12, 19, 28]
+	# Here we pass our lambda to our method as an argument
+	p (1..5).to_a.map2(&block_object)		# => [4, 7, 12, 19, 28]
 
-	c = 5
-	p (1..5).to_a.map2 &block_object		# => [6, 9, 14, 21, 30]
+	c = 5		# Redefine the 'c' variable
+	# Here we pass our lambda to our method as an argument
+	p (1..5).to_a.map2(&block_object)		# => [6, 9, 14, 21, 30]
 
 	# Lambdas may be passed to a method without its direct passing
 	class Array
@@ -125,12 +128,35 @@
 	    lam.call
 	  end
 	end
+
 	c = 3
 	# Here I won't PASS any arguments to method, but block is seen within it
 	p (1..5).to_a.map2{|b| b**2 + c }		# => [4, 7, 12, 19, 28]
 	p (1..5).to_a.map2									# => "no block"
 
-12. Open GEM
+12. Proc
+	# Proc is a block (see 10) that can be called more than once
+	# Proc also has object properties while block does not
+	# Proc is almost the same as lambda, but has two differences:
+	# 1) proc doesn't check the number of arguments thus giving any arguments that are not stated a nil
+	# 2) lambda passes control back to its caller while proc does not
+	def batman_ironman_proc
+	  victor = Proc.new { return "Batman will win!" }
+	  victor.call
+	  "Iron Man will win!"
+	end
+
+	puts batman_ironman_proc		# => Batman will win!
+
+	def batman_ironman_lambda
+	  victor = lambda { return "Batman will win!" }
+	  victor.call
+	  "Iron Man will win!"
+	end
+
+	puts batman_ironman_lambda		# => Iron Man will win!
+
+13. Open GEM
 	# It is often necessary to find out how a function works without going to Github
 	bundle open [GEMname]
 	# This will use standard text editor to open this gem
