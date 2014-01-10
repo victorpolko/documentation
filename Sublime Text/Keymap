@@ -1,20 +1,41 @@
 [
 	//focus groups
-	{ "keys": ["ctrl+1"],"command": "set_layout", "args":
+	{ "keys": ["alt+1"], "command": "focus_group", "args": { "group": 0 } },
+	{ "keys": ["alt+2"], "command": "focus_group", "args": { "group": 1 } },
+	{ "keys": ["alt+3"], "command": "focus_group", "args": { "group": 2 } },
+	{
+		"keys": ["ctrl+1"],
+		"command": "set_layout",
+		"args":
 		{
-			"cols": [0.0, 0.75, 1.0],
+			"cols": [0.0, 0.66, 0.83, 1.0],
 			"rows": [0.0, 1.0],
-			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
 		}
 	},
 
-	{ "keys": ["ctrl+2"],"command": "set_layout", "args":
+	{
+		"keys": ["ctrl+2"],
+		"command": "set_layout",
+		"args":
 		{
-			"cols": [0.0, 0.25, 1.0],
+			"cols": [0.0, 0.17, 0.83, 1.0],
 			"rows": [0.0, 1.0],
-			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
 		}
 	},
 
-    { "keys": ["shift+alt+tab"], "command": "reindent"}
+	{
+		"keys": ["ctrl+3"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.17, 0.34, 1.0],
+			"rows": [0.0, 1.0],
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
+		}
+	},
+
+  { "keys": ["shift+alt+tab"], "command": "reindent"},
+  { "keys": ["ctrl+shift+r"], "command": "goto_symbol_in_project" },
 ]
