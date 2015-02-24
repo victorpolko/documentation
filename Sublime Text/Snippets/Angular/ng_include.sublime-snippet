@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+ng-include="'${1:templateUrl}'"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>nginc</tabTrigger>
+  <scope>text.html, text.slim</scope>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+| ${1:orderBy: ${2:-}${3:column_name}}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>forder</tabTrigger>
+  <scope>text.html, text.slim</scope>
+</snippet>

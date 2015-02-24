@@ -3,7 +3,7 @@
 documents/doc1.doc    -> public/documents/doc1.doc
 assets/doc2.doc       -> public/assets/doc2.doc
 
-# Everything that is no stored in GIT when deploying but has to be deployed on the server should be added to shared_children in deploy.rb
+# Everything that is not stored in GIT when deploying but has to be deployed on the server should be added to shared_children in deploy.rb
 ..
 set :shared_children,   %w(public/system public/files public/uploads log tmp/pids tmp/sockets)
 ..
@@ -28,3 +28,21 @@ location ~ ^/(assets|images|javascripts|stylesheets|system|phone-codes|docs)/  {
         break;
       }
 ..
+
+
+# GZip
+# GZ-assets are supplied by Assets Pipeline by default, it is very strange that we don't use them at all
+# In order for nginx to serve gz-assets, write this to config:
+server {
+    gzip on;
+  ...
+    location ~ ^/(assets)/  {
+        gzip_static on;
+        expires max;
+        add_header Cache-Control public;
+  }
+
+# Then don't forget to restart nginx with
+/etc/init.d/nginx configtest && /etc/init.d/nginx restart
+
+# And check that assets come small and unpack as big entities (Chrome Dev tools -> Network (content vs size))

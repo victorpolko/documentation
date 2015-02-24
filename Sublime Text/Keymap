@@ -8,9 +8,9 @@
 		"command": "set_layout",
 		"args":
 		{
-			"cols": [0.0, 0.66, 0.83, 1.0],
+			"cols": [0.0, 0.83, 1.0],
 			"rows": [0.0, 1.0],
-			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
 		}
 	},
 
@@ -19,9 +19,9 @@
 		"command": "set_layout",
 		"args":
 		{
-			"cols": [0.0, 0.17, 0.83, 1.0],
+			"cols": [0.0, 0.17, 1.0],
 			"rows": [0.0, 1.0],
-			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
+			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
 		}
 	},
 
@@ -37,5 +37,5 @@
 	},
 
   { "keys": ["shift+alt+tab"], "command": "reindent"},
-  { "keys": ["ctrl+shift+r"], "command": "goto_symbol_in_project" },
+  { "keys": ["ctrl+shift+r"], "command": "goto_symbol_in_project" }
 ]

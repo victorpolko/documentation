@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+| lowercase
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>flower</tabTrigger>
+  <scope>text.html, text.slim</scope>
+</snippet>

@@ -1,7 +1,7 @@
 $ ssh-keygen
-	# choose a path to your key
+  # choose a path to your key
 
 $ cat ~/.ssh/id_rsa.pub # this is my pathToKey
-	# this will output new key
+  # this will output new key
 
 Go to bitbucket -> Manage Account -> SSH Keys -> Add Key and paste this key into.

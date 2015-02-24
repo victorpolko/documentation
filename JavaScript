@@ -58,11 +58,11 @@
 
 6.Common functions for undefined number of arguments may be got with {arguments} object
 	function sum() {
-	    var res = 0;
-	    for (var i = 0; i < arguments.length; i++) {
-	        res += arguments[i];
-	    }
-	    return res;
+		var res = 0;
+		for (var i = 0; i < arguments.length; i++) {
+			res += arguments[i];
+		}
+		return res;
 	}
 	console.log(sum(3, 4));				// 7
 	console.log(sum(3, 4, 5));			// 12
@@ -70,18 +70,18 @@
 
 7.Recursion in functions may be got with {arguments.callee} object
 	var factorial = function(step, res) {
-	    res = res || 1;
-	    if (step < 2) {
-	        return res;
-	    }
-	    return arguments.callee(step - 1, step * res);
+		res = res || 1;
+		if (step < 2) {
+			return res;
+		}
+		return arguments.callee(step - 1, step * res);
 	};
 	console.log(factorial(5));			// 120
 
 8.Closures are used for inner functions to have access to outer functions variables
 	var uniqueId = function() {
-	    var id = 0;
-	    return function() { return id++; };
+		var id = 0;
+		return function() { return id++; };
 	}();
 	var aValue = uniqueId();
 	var anotherValue = uniqueId();
@@ -89,20 +89,20 @@
 //V 9.Closure for only-here usage
 	var getConstant = function() {
 	  var constants = {											//V With this method
-	    UPPER_BOUND: 100,										//V all these constants
-	    LOWER_BOUND: -100										//V are no longer accessible
+		UPPER_BOUND: 100,										//V all these constants
+		LOWER_BOUND: -100										//V are no longer accessible
 	  };														//V from anywhere
 	  return function(constantName) {							//V except this function itself!
-	    return constants[constantName];
+		return constants[constantName];
 	  };
 	}();														//V Here it is called right after creation
 	alert(getConstant("LOWER_BOUND")); // -100
 
 10.Currying example (many arguments->each argument)
 	var multNumber = function(arg) {
-	    return function(mul) {
-	        return arg * mul;
-	    };
+		return function(mul) {
+			return arg * mul;
+		};
 	};
 	var multFive = multNumber(5);
 	console.log(multFive(7));			//35

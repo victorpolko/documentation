@@ -1,0 +1,5 @@
+1. Main method is expect, e.g.:
+  it 'is valid   with    name, phone and email' do
+    contact = Contact.new(name: 'Victor', phone: '+7159159159', email: 'victor@nodogs.here', address: '195274, Russia, Saint-Petersburg')
+    expect(contact).to be_valid
+  end

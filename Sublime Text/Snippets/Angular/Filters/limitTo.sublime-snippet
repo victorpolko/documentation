@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+| ${1:limitTo: ${2:-}${3:1}}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>flimit</tabTrigger>
+  <scope>text.html, text.slim</scope>
+</snippet>

@@ -2,7 +2,7 @@
 1) sudo apt-get install ruby rubygems
 2) sudo gem install capistrano capistrano-ext
 
-cap	[servername]	deploy
+cap	[servername]deploy
 
 Severname is usually defined in some configs.
 

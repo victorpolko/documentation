@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+ng-src="${1:\{\{}${2: link to source }${3:\}\}}"
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>ngsrc</tabTrigger>
+  <scope>text.html, text.slim</scope>
+</snippet>

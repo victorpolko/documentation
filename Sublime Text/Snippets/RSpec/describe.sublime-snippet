@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+describe '${1:.some_instance_method or #some_class_method}' do
+  $2
+end
+$0
+]]></content>
+  <tabTrigger>describe</tabTrigger>
+  <scope>source.ruby</scope>
+</snippet>

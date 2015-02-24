@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+${1:moduleName}.directive "${2:directiveName}", (${3:}) ->
+  restrict: "${4:A | E | C | M}"
+  ${5:scope: ${6:true | false | {\}}}
+  link: (${7:scope, elem, attrs}) ->
+    ${8:'logics when linking is happening'}
+  templateUrl: (${9:elem, attrs}) ->
+    '${10:should return string}'
+  ${11:template: '''
+    '${12:pure html, please}'
+  '''}
+$0
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dir</tabTrigger>
+  <scope>source.coffee</scope>
+</snippet>

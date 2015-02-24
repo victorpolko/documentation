@@ -4,6 +4,12 @@ Goto previous location                                      cd -
 Go 1 level up                                               cd ..
 Stop a process                                              Ctrl+C
 Search for commands                                         Ctrl+R
+Refuse from search results                                  Ctrl+G
+Cut the last word                                           Ctrl+W
+Cut everything after the cursor to clipboard                Ctrl+K
+Cut everything before the cursor to clipboard               Ctrl+U
+Paste from clipboard                                        Ctrl+Y
+Undo                                                        Ctrl+/
 Send a process to background                                Ctrl+Z
     return it to foreground                                 fg
 Run a process and send it to background                     [process]   &

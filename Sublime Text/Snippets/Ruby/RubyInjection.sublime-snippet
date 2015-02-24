@@ -1,0 +1,7 @@
+<snippet>
+  <content><![CDATA[
+<%${1:=} ${2:${3:helper},	${4:params}} %>
+]]></content>
+  <tabTrigger>inj</tabTrigger>
+  <scope>text.html</scope>
+</snippet>

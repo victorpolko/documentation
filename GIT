@@ -1,11 +1,11 @@
-git	config --global user.name	"Victor P."                    #  Config your name, which will be shown on commits history
-git	config --global user.email	viktor_polko@mkechinov.ru    #  Config your email, which will be shown on commits history
+git config --global user.name "Victor P."                    #  Config your name, which will be shown on commits history
+git config --global user.email  viktor_polko@mkechinov.ru    #  Config your email, which will be shown on commits history
 ssh-add ~/.ssh/id_rsa                                        #  Add private SSH-key to ssh-agent so that you don't have to type password every time you request origin
 
-git	init											                               #	Initialize an empty .git repo in current folder
+git init                                                     #  Initialize an empty .git repo in current folder
 git clone [pathToRepo]                                       #  Clone a repo to this folder
 git add .                                                    #  Add files to be tracked to stage
-git reset                                                    #  Remove files from stage
+git reset .                                                  #  Remove files from stage
 git commit                                                   #  Commit staged files
 git pull                                                     #  Pull changes from remote repo
 git push                                                     #  Push commits to repo
@@ -22,7 +22,11 @@ git commit -am "Commit message"                              #  Add all files an
     git checkout -b [temporaryBranchName]                    #  Create new branch for task and switch to it
   # make some changes + CREATE some commits
     git checkout develop                                     #  Switch to develop branch
-    git pull                                                 #  Pull changes from origin
+    git pull                                                 #  Pull changes from origin (if there are any)
     git merge --no-ff [temporaryBranchName]                  #  Merge new branch to develop with new COMMON commit for all its commits
     git push                                                 #  Push changes to develop
     git branch -d [temporaryBranchName]                      #  Delete this branch
+
+# Reset last commit on origin
+  git reset --hard HEAD~1                                    # Reset state to one commit back
+  git push -f origin master                                  # Push this state to origin
