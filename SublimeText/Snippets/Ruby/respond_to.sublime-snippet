@@ -1,7 +1,9 @@
 <snippet>
   <content><![CDATA[
-binding.pry ${1:if Rails.env.development?}$0
+respond_to do |format|
+  format.${1:html} ${0:}
+end
 ]]></content>
-  <tabTrigger>pry</tabTrigger>
+  <tabTrigger>resp</tabTrigger>
   <scope>source.ruby</scope>
 </snippet>

@@ -3,5 +3,4 @@
 <%= link_to '${1:Link Name}', ${2:${3:somewhere}_path}${4:, class: '${5:btn btn-primary}'} %>
 ]]></content>
 	<tabTrigger>lin</tabTrigger>
-	<!-- <scope>source.ruby</scope> -->
 </snippet>
