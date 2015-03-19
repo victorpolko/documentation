@@ -204,6 +204,4 @@
     @return $n * $grid-width + ($n - 1) * $gutter-width;
   }
 
-  #sidebar { width: grid-width(5); }                =>          #sidebar { width: 240px; }
-
-
+  #sidebar { width: grid-width(5); }  // => #sidebar { width: 240px; }

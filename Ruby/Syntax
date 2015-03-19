@@ -120,8 +120,8 @@
   5.times {print  'Hey!'}   # =>  Hey!Hey!Hey!Hey!Hey!
 
 18.Get user input
-  input   = gets          # Get what user inputs
-  input.chomp               # Stick to a single string
+  input = gets          # Get what user inputs
+  input.chomp           # Stick to a single string
   if input include? 'String to check for'
     input.gsub!(/letter/,'new text')  # global substring
   else

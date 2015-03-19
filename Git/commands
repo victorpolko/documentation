@@ -1,6 +1,5 @@
 git config --global user.name "Victor P."                    #  Config your name, which will be shown on commits history
 git config --global user.email  viktor_polko@mkechinov.ru    #  Config your email, which will be shown on commits history
-ssh-add ~/.ssh/id_rsa                                        #  Add private SSH-key to ssh-agent so that you don't have to type password every time you request origin
 
 git init                                                     #  Initialize an empty .git repo in current folder
 git clone [pathToRepo]                                       #  Clone a repo to this folder

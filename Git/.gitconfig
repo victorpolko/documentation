@@ -1,0 +1,29 @@
+# ~/.gitconfig file
+# Any of these options may be redefined on the base of each git repository in
+#   repo_folder/.git/config
+
+# This block defines how commits will be authored
+[user]
+  name = Victor Polko\n\n\n\n\n
+  email = victor.polko@mkechinov.ru
+
+# Attach colored output
+[color]
+  ui = true
+  diff = true
+
+# Define aliases
+[alias]
+  st = status
+  cm = commit -m
+  co = checkout
+  di = diff
+  br = branch
+
+  lg = log --oneline
+  lgg = log --graph
+
+  # I use stash for commits to be sequental and to avoid merges
+  refresh = !git add --all && echo \"\t +++++ Added all files to commit\" && git stash clear && echo \"\t ---- Cleared stash up\" && git stash save && echo \"\t ---- Stashed changes\" && git pull && echo \"\t +++++ Pulled from origin\" && git stash apply && echo \"\t +++++ Applied stashed changes\" && git reset . && echo \"\t ---- Removed all files from git-stage\"
+
+  supermerge = !git merge --no-ff -e $1

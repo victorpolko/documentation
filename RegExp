@@ -1,285 +1,285 @@
 // Declaration
-	// First Way: using regexp literal
-	var reg = /ab+c/;
+  // First Way: using regexp literal
+  var reg = /ab+c/;
 
-	// Second Way: using a constructor
-	var reg = new RegExp("ab+c");
-	// This way is used when the expression isn't known beforehand (taken from input)
+  // Second Way: using a constructor
+  var reg = new RegExp("ab+c");
+  // This way is used when the expression isn't known beforehand (taken from input)
 
 
 /* Special characters
-	'\' 	when applied to a non-special character, indicates that it is special
-		e.g.: /\b/ means 'word boundary'
-			when applied to a special character, indicates that it is non-special
-		e.g.: /a\*/ matches any string containing 'a*'
+  '\'   when applied to a non-special character, indicates that it is special
+    e.g.: /\b/ means 'word boundary'
+      when applied to a special character, indicates that it is non-special
+    e.g.: /a\*/ matches any string containing 'a*'
 
-	'^'		matches beginning of input. If the multiline flag is set to true, also matches immediately after a line break character
-		e.g.: /^A/ does not match the 'A' in "an A", but does match the 'A' in "An E"
+  '^'   matches beginning of input. If the multiline flag is set to true, also matches immediately after a line break character
+    e.g.: /^A/ does not match the 'A' in "an A", but does match the 'A' in "An E"
 
-	'$'		matches end of input. If the multiline flag is set to true, also matches immediately before a line break character.
-		e.g.: /t$/ does not match the 't' in "eater", but does match it in "eat"
+  '$'   matches end of input. If the multiline flag is set to true, also matches immediately before a line break character.
+    e.g.: /t$/ does not match the 't' in "eater", but does match it in "eat"
 
-	'*'		matches the preceeding character 0 or more times
-		e.g.: /bo*/ matches 'boooo' in "A ghost booooed" and 'b' in "A bird warbled", but nothing in "A goat grunted"
+  '*'   matches the preceeding character 0 or more times
+    e.g.: /bo*/ matches 'boooo' in "A ghost booooed" and 'b' in "A bird warbled", but nothing in "A goat grunted"
 
-	'+'		matches the preceeding character 1 or more times (equivalent to {1,})
-		e.g.: /a+/ matches the 'a' in "candy" and all the a's in "caaaaaaandy"
+  '+'   matches the preceeding character 1 or more times (equivalent to {1,})
+    e.g.: /a+/ matches the 'a' in "candy" and all the a's in "caaaaaaandy"
 
-	'?'		'matches the preceeding character 0 or 1 times (equivalent to {0,1})
-		e.g.: /e?le?/ matches the 'el' in "angel" and the 'le' in "angle" and also the 'l' in "oslo"
-			If used immediately after any of the quantifiers *, +, ?, or {}, makes the quantifier non-greedy (matching the fewest possible characters), as opposed to the default, which is greedy (matching as many characters as possible).
-		e.g.: applying /\d+/ to "123abc" matches "123". But applying /\d+?/ to that same string matches only the "1".
+  '?'   'matches the preceeding character 0 or 1 times (equivalent to {0,1})
+    e.g.: /e?le?/ matches the 'el' in "angel" and the 'le' in "angle" and also the 'l' in "oslo"
+      If used immediately after any of the quantifiers *, +, ?, or {}, makes the quantifier non-greedy (matching the fewest possible characters), as opposed to the default, which is greedy (matching as many characters as possible).
+    e.g.: applying /\d+/ to "123abc" matches "123". But applying /\d+?/ to that same string matches only the "1".
 
-	'.'		matches any single character except the newline character
-		e.g.: /.n/ matches 'an' and 'on' in "nay, an apple is on the tree", but not 'nay'
+  '.'   matches any single character except the newline character
+    e.g.: /.n/ matches 'an' and 'on' in "nay, an apple is on the tree", but not 'nay'
 
-	'(x)'	matches 'x' and remembers the match, as the example shows. The parentheses are called CAPTURING PARENTHESES.
-		e.g.: the '(foo)' and '(bar)' in the pattern /(foo) (bar) \1 \2/ match and remember the first two words in the string "foo bar foo bar". The \1 and \2 in the pattern match the string-s last two words
+  '(x)' matches 'x' and remembers the match, as the example shows. The parentheses are called CAPTURING PARENTHESES.
+    e.g.: the '(foo)' and '(bar)' in the pattern /(foo) (bar) \1 \2/ match and remember the first two words in the string "foo bar foo bar". The \1 and \2 in the pattern match the string-s last two words
 
-	'(?:x)'	matches 'x' but does not remember the match. The parentheses are called NON-CAPTURING PARENTHESES, and let define subexpressions for regular expression operators to work with.
-		e.g.: /(?:foo){1,2}/ without the non-capturing parentheses, the {1,2} characters would apply only to the last 'o' in 'foo'. With the capturing parentheses, the {1,2} applies to the entire word 'foo'
+  '(?:x)' matches 'x' but does not remember the match. The parentheses are called NON-CAPTURING PARENTHESES, and let define subexpressions for regular expression operators to work with.
+    e.g.: /(?:foo){1,2}/ without the non-capturing parentheses, the {1,2} characters would apply only to the last 'o' in 'foo'. With the capturing parentheses, the {1,2} applies to the entire word 'foo'
 
-	'x(?=y)'	matches 'x' only if 'x' is followed by 'y'. This is called a LOOKAHEAD
-		e.g.: /Jack(?=Sprat)/ matches 'Jack' only if it is followed by 'Sprat'. /Jack(?=Sprat|Frost)/ matches 'Jack' only if it is followed by 'Sprat' or 'Frost'. However, neither 'Sprat' nor 'Frost' is part of the match results
+  'x(?=y)'  matches 'x' only if 'x' is followed by 'y'. This is called a LOOKAHEAD
+    e.g.: /Jack(?=Sprat)/ matches 'Jack' only if it is followed by 'Sprat'. /Jack(?=Sprat|Frost)/ matches 'Jack' only if it is followed by 'Sprat' or 'Frost'. However, neither 'Sprat' nor 'Frost' is part of the match results
 
-	'x(?!y)'	matches 'x' only if 'x' is not followed by 'y'. This is called a NEGATED LOOKAHEAD
-		e.g.: /\d+(?!\.)/ matches a number only if it is not followed by a decimal point. The regular expression /\d+(?!\.)/.exec("3.141") matches '141' but not '3.141'
+  'x(?!y)'  matches 'x' only if 'x' is not followed by 'y'. This is called a NEGATED LOOKAHEAD
+    e.g.: /\d+(?!\.)/ matches a number only if it is not followed by a decimal point. The regular expression /\d+(?!\.)/.exec("3.141") matches '141' but not '3.141'
 
-	'x|y'	matches either 'x' or 'y'
-		e.g.: /green|red/ matches 'green' in "green apple" and 'red' in "red apple"
+  'x|y' matches either 'x' or 'y'
+    e.g.: /green|red/ matches 'green' in "green apple" and 'red' in "red apple"
 
-	'{n}'	matches exactly 'n' (positive integer) occurencies of preceeding character
-		e.g.: /a{2}/ doesnt match the 'a' in 'candy', but it does match all of the a-s in 'caandy', and the first two a-s in "caaaaaandy."
+  '{n}' matches exactly 'n' (positive integer) occurencies of preceeding character
+    e.g.: /a{2}/ doesnt match the 'a' in 'candy', but it does match all of the a-s in 'caandy', and the first two a-s in "caaaaaandy."
 
-	'{n,m}'	matches at least 'n' and at most 'm' occurencies of the preceeding character
-		e.g.: /a{1,3}/ matches nothing in "cndy", the 'a' in "candy," the first two a-s in "caandy," and the first three a-s in "caaaaaaandy". Notice that when matching "caaaaaaandy", the match is "aaa", even though the original string had more a-s in it
+  '{n,m}' matches at least 'n' and at most 'm' occurencies of the preceeding character
+    e.g.: /a{1,3}/ matches nothing in "cndy", the 'a' in "candy," the first two a-s in "caandy," and the first three a-s in "caaaaaaandy". Notice that when matching "caaaaaaandy", the match is "aaa", even though the original string had more a-s in it
 
-	'[xyz]'	matches the character set. This pattern type matches any one of the characters in the brackets, including escape sequences. Special characters like the dot(.) and asterisk (*) are not special inside a character set, so they don-t need to be escaped. One can specify a range of characters using a hyphen
-		e.g.: [a-d] performs the same match as [abcd]: matches the 'b' in "brisket" and the 'c' in "city". The patterns /[a-z.]+/ and /[\w.]+/ match the entire string "test.i.ng"
+  '[xyz]' matches the character set. This pattern type matches any one of the characters in the brackets, including escape sequences. Special characters like the dot(.) and asterisk (*) are not special inside a character set, so they don-t need to be escaped. One can specify a range of characters using a hyphen
+    e.g.: [a-d] performs the same match as [abcd]: matches the 'b' in "brisket" and the 'c' in "city". The patterns /[a-z.]+/ and /[\w.]+/ match the entire string "test.i.ng"
 
-	'[a-z-[aouie]]'	matches any single consonant. Subtraction class must always be last in class.
-		e.g.:	[a-[123]-d] is wrong
-				[a-d-[123]] is correct
+  '[a-z-[aouie]]' matches any single consonant. Subtraction class must always be last in class.
+    e.g.: [a-[123]-d] is wrong
+        [a-d-[123]] is correct
 
-	'[^xyz]'	is a negated or complemented character set: it matches anything that is not enclosed in the brackets. You can specify a range of characters by using a hyphen. Everything that works in the normal character set also works here
-		e.g.: [^abc] is the same as [^a-c]: match 'r' in "brisket" and 'h' in "chop" because no '+' after
+  '[^xyz]'  is a negated or complemented character set: it matches anything that is not enclosed in the brackets. You can specify a range of characters by using a hyphen. Everything that works in the normal character set also works here
+    e.g.: [^abc] is the same as [^a-c]: match 'r' in "brisket" and 'h' in "chop" because no '+' after
 
-	'[\b]'	matches a backspace (U+0008) ! not \b)
+  '[\b]'  matches a backspace (U+0008) ! not \b)
 
-	'\b'	matches a word boundary: the position where a word character is not followed or preceeded by another word-character. Note that a matched word boundary is not included in the match. In other words, the length of a matched word boundary is zero. (Not to be confused with [\b].)
-		e.g.:	/\bm/ matches the 'm' in "moon" ;
-				/oo\b/ does not match the 'oo' in "moon", because 'oo' is followed by 'n' which is a word character;
-				/oon\b/ matches the 'oon' in "moon", because 'oon' is the end of the string, thus not followed by a word character;
-				/\w\b\w/ will never match anything, because a word character can never be followed by both a non-word and a word character.
+  '\b'  matches a word boundary: the position where a word character is not followed or preceeded by another word-character. Note that a matched word boundary is not included in the match. In other words, the length of a matched word boundary is zero. (Not to be confused with [\b].)
+    e.g.: /\bm/ matches the 'm' in "moon" ;
+        /oo\b/ does not match the 'oo' in "moon", because 'oo' is followed by 'n' which is a word character;
+        /oon\b/ matches the 'oon' in "moon", because 'oon' is the end of the string, thus not followed by a word character;
+        /\w\b\w/ will never match anything, because a word character can never be followed by both a non-word and a word character.
 
-	'\B'	matches a non-word boundary. This matches a position where the previous and next character are of the same type: either both must be words, or both must be non-words. The beginning and end of a string are considered non-words.
-		e.g.:	/\B../ matches 'oo' in "noonday" (, and /y\B./ matches 'ye' in "possibly yesterday"
+  '\B'  matches a non-word boundary. This matches a position where the previous and next character are of the same type: either both must be words, or both must be non-words. The beginning and end of a string are considered non-words.
+    e.g.: /\B../ matches 'oo' in "noonday" (, and /y\B./ matches 'ye' in "possibly yesterday"
 
-	'\cX'	matches a control character in a string (X is a character [A-Z])
-		e.g.: /\cM/ matches control-M (U+000D) in a string
+  '\cX' matches a control character in a string (X is a character [A-Z])
+    e.g.: /\cM/ matches control-M (U+000D) in a string
 
-	'\d'	matches a digit character. Equivalent to [0-9]
-		e.g.: /\d/ or /[0-9]/ matches '2' in "B2 is the suite number"
+  '\d'  matches a digit character. Equivalent to [0-9]
+    e.g.: /\d/ or /[0-9]/ matches '2' in "B2 is the suite number"
 
-	'\D'	matches any non-digit character. Equivalent to [^0-9]
-		e.g.: /\D/ or /[^0-9]/ matches 'B' in "B2 is the suite number"
+  '\D'  matches any non-digit character. Equivalent to [^0-9]
+    e.g.: /\D/ or /[^0-9]/ matches 'B' in "B2 is the suite number"
 
-	'\f'	matches a form feed (U+000C)
+  '\f'  matches a form feed (U+000C)
 
-	'\h'	matches all spaces and no returns (\n)
-		e.g.: /\h/ matches ' ' in "B2 is the suite number"
+  '\h'  matches all spaces and no returns (\n)
+    e.g.: /\h/ matches ' ' in "B2 is the suite number"
 
-	'\H'	matches all non-space characters and returns (\n)
-		e.g.: /\H/ matches '{\n}' in "B2{\n} dsds sd"
+  '\H'  matches all non-space characters and returns (\n)
+    e.g.: /\H/ matches '{\n}' in "B2{\n} dsds sd"
 
-	'\l'	matches all lower-case letters
-		e.g.: /\l/ matches 'a' in "B2987298374 abcd efg tre"
+  '\l'  matches all lower-case letters
+    e.g.: /\l/ matches 'a' in "B2987298374 abcd efg tre"
 
-	'\L'	matches all upper-case letters, digits, marks, \t, \n (all !lower-case letters)
-		e.g.: /\L/ matches '2' in "2987298374 abcd efg tre"
+  '\L'  matches all upper-case letters, digits, marks, \t, \n (all !lower-case letters)
+    e.g.: /\L/ matches '2' in "2987298374 abcd efg tre"
 
-	'\n'	matches a line feed (U+000A)
+  '\n'  matches a line feed (U+000A)
 
-	'\r'	matches a carriage return (U+000D)
+  '\r'  matches a carriage return (U+000D)
 
-	'\s'	matches a single white space character, including space, tab, form feed, line feed. Equivalent to [ \f\n\r\t\v​\u00a0\u1680​\u180e\u2000​\u2001\u2002​\u2003\u2004​\u2005\u2006​\u2007\u2008​\u2009\u200a​\u2028\u2029​​\u202f\u205f​\u3000]
-		e.g.: /\s\w*/ matches ' bar' in "foo bar."
+  '\s'  matches a single white space character, including space, tab, form feed, line feed. Equivalent to [ \f\n\r\t\v​\u00a0\u1680​\u180e\u2000​\u2001\u2002​\u2003\u2004​\u2005\u2006​\u2007\u2008​\u2009\u200a​\u2028\u2029​​\u202f\u205f​\u3000]
+    e.g.: /\s\w*/ matches ' bar' in "foo bar."
 
-	'\S'	matches a single character other than white space. Equivalent to [^ \f\n\r\t\v​\u00a0\u1680​\u180e\u2000​\u2001\u2002​\u2003\u2004​\u2005\u2006​\u2007\u2008​\u2009\u200a​\u2028\u2029​\u202f\u205f​\u3000]
-		e.g.: /\S\w*/ matches 'foo' in "foo bar."
+  '\S'  matches a single character other than white space. Equivalent to [^ \f\n\r\t\v​\u00a0\u1680​\u180e\u2000​\u2001\u2002​\u2003\u2004​\u2005\u2006​\u2007\u2008​\u2009\u200a​\u2028\u2029​\u202f\u205f​\u3000]
+    e.g.: /\S\w*/ matches 'foo' in "foo bar."
 
-	'\t'	matches a tab (U+0009)
+  '\t'  matches a tab (U+0009)
 
-	'\uhhhh'matches the character with the Unicode hhhh (four hexadecimal digits).
+  '\uhhhh'matches the character with the Unicode hhhh (four hexadecimal digits).
 
-	'\u'	matches all upper-case letters
-		e.g.: /\u/ matches 'S' in "2987298374 abcd S efg tre"
+  '\u'  matches all upper-case letters
+    e.g.: /\u/ matches 'S' in "2987298374 abcd S efg tre"
 
-	'\U'	matches all !upper-case letters)
-		e.g.: /\L/ matches '2' in "2987298374 abcd efg tre"
+  '\U'  matches all !upper-case letters)
+    e.g.: /\L/ matches '2' in "2987298374 abcd efg tre"
 
-	'\v'	matches a vertical tab (U+000B)
+  '\v'  matches a vertical tab (U+000B)
 
-	'\V'	matches !vertical tab
+  '\V'  matches !vertical tab
 
-	'\w'	matches any alphanumeric character including the underscore. Equivalent to [A-Za-z0-9_]
-		e.g.: /\w/ matches 'a' in "apple," '5' in "$5.28," and '3' in "3D."
+  '\w'  matches any alphanumeric character including the underscore. Equivalent to [A-Za-z0-9_]
+    e.g.: /\w/ matches 'a' in "apple," '5' in "$5.28," and '3' in "3D."
 
-	'\W'	matches any non-word character. Equivalent to [^A-Za-z0-9_]
-		e.g.: /\W/ or /[^A-Za-z0-9_]/ matches '%' in "50%."
+  '\W'  matches any non-word character. Equivalent to [^A-Za-z0-9_]
+    e.g.: /\W/ or /[^A-Za-z0-9_]/ matches '%' in "50%."
 
-	'\n'	where n is a +integer matches a back reference to the last substring matching the n parenthetical in the regular expression (counting left parentheses). Works as a "reminder" for anything inside the parentheses
-		e.g.: /apple(,)\sorange\1/ matches 'apple, orange,' in "apple, orange, cherry, peach."
+  '\n'  where n is a +integer matches a back reference to the last substring matching the n parenthetical in the regular expression (counting left parentheses). Works as a "reminder" for anything inside the parentheses
+    e.g.: /apple(,)\sorange\1/ matches 'apple, orange,' in "apple, orange, cherry, peach."
 
-	'\0'	matches a NULL (U+0000) character. Do not follow this with another digit, because \0<digits> is an OCTAL ESCAPE SEQUENCE
+  '\0'  matches a NULL (U+0000) character. Do not follow this with another digit, because \0<digits> is an OCTAL ESCAPE SEQUENCE
 
-	'\xhh'	matches the character with the Unicode hh (two hexadecimal digits)
+  '\xhh'  matches the character with the Unicode hh (two hexadecimal digits)
 
-	'\Q..\E'match an exact string
-		'\Q/*\ds\E' matches '/*\ds' in 1321321/*\dsssdf*/
+  '\Q..\E'match an exact string
+    '\Q/*\ds\E' matches '/*\ds' in 1321321/*\dsssdf*/
 
 //Methods
 
-	exec:	a RegExp method that executes a search for a match in a string.
-			Returns: array of information
-			e.g.:	// In order to have access to regexp properties, it is necessary to assign it to a variable
-					var myReg = /d(b+)d/g;
-					var myArr = myReg.exec("cdbbdbsbz");
-					console.log("The value of lastIndex is " + myRe.lastIndex); // displays: 'The value of lastIndex is 5'
+  exec: a RegExp method that executes a search for a match in a string.
+      Returns: array of information
+      e.g.: // In order to have access to regexp properties, it is necessary to assign it to a variable
+          var myReg = /d(b+)d/g;
+          var myArr = myReg.exec("cdbbdbsbz");
+          console.log("The value of lastIndex is " + myRe.lastIndex); // displays: 'The value of lastIndex is 5'
 
-					// If one doesn't need to access the properties of the regular expression (every occurence is a new RegExp), an alternative way of creating myArray is:
-					var myArr = /d(b+)d/g.exec("cdbbdbsbz");
-					console.log("The value of lastIndex is " + /d(b+)d/g.lastIndex); //displays: 'The value of lastIndex is 0'
+          // If one doesn't need to access the properties of the regular expression (every occurence is a new RegExp), an alternative way of creating myArray is:
+          var myArr = /d(b+)d/g.exec("cdbbdbsbz");
+          console.log("The value of lastIndex is " + /d(b+)d/g.lastIndex); //displays: 'The value of lastIndex is 0'
 
-					// If one needs to construct a regular expression from a string:
-					var myReg = new RegExp("d(b+)d", "g");
-					var myArr = myRe.exec("cdbbdbsbz");
+          // If one needs to construct a regular expression from a string:
+          var myReg = new RegExp("d(b+)d", "g");
+          var myArr = myRe.exec("cdbbdbsbz");
 
-					// With all these scripts a match succeeds and returns the array and updates the properties:
-					myArr: {
-						''		:	["dbbd", "bb"],	//	the matched string and all (remembered substrings)
-						index	:	1, 				//	the 0-based index of the match in the input string
-						input	:	"cdbbdcsbz",	//	the original string
-						[0]		:	"dbbd"			//	the last matched characters
-					},
-					myReg: {
-						lastIndex	:	5,			//	an index at which to start the next match (g-flag)
-						source		:	"d(b+)d"	//	a text of the pattern (updated at the time that a regexp is created, not executed)
-					}
+          // With all these scripts a match succeeds and returns the array and updates the properties:
+          myArr: {
+            ''    : ["dbbd", "bb"], //  the matched string and all (remembered substrings)
+            index : 1,        //  the 0-based index of the match in the input string
+            input : "cdbbdcsbz",  //  the original string
+            [0]   : "dbbd"      //  the last matched characters
+          },
+          myReg: {
+            lastIndex : 5,      //  an index at which to start the next match (g-flag)
+            source    : "d(b+)d"  //  a text of the pattern (updated at the time that a regexp is created, not executed)
+          }
 
-	test:	a RegExp method that tests for a match in a string.
-			Returns: true|false
+  test: a RegExp method that tests for a match in a string.
+      Returns: true|false
 
-	match:	a String method that executes a search for a match in a string.
-			Returns: array|null
+  match:  a String method that executes a search for a match in a string.
+      Returns: array|null
 
-	search:	12
-			a String method that tests for a match in a string.
-			Returns: index of a match | -1 (if not matched)
+  search: 12
+      a String method that tests for a match in a string.
+      Returns: index of a match | -1 (if not matched)
 
-	replace:a String method that executes a search for a match in a string and replaces the matched substring with a replacement one.
+  replace:a String method that executes a search for a match in a string and replaces the matched substring with a replacement one.
 
-	split:	a String method that uses a regular expression or a fixed string to break a string into an array of substrings.
+  split:  a String method that uses a regular expression or a fixed string to break a string into an array of substrings.
 
 // Using parenthesized substring matches
 
-	// The following script uses the replace() method to switch the words in the string. For the replacement text, the script uses the $1 and $2 in the replacement to denote the first and second parenthesized substring matches.
-	var re =/(\w+)\s(\w+)/;					//	Declare a regexp (word+space+word)
-	var str = "John Smith";					//	Declare a string
-	var newstr = str.replace(re, "$2, $1");	//	Replace words with each ($1 - first word, $2 - second word) other using a comma
-	console.log(newstr);					//	Prints: 'Smith, John'
+  // The following script uses the replace() method to switch the words in the string. For the replacement text, the script uses the $1 and $2 in the replacement to denote the first and second parenthesized substring matches.
+  var re =/(\w+)\s(\w+)/;         //  Declare a regexp (word+space+word)
+  var str = "John Smith";         //  Declare a string
+  var newstr = str.replace(re, "$2, $1"); //  Replace words with each ($1 - first word, $2 - second word) other using a comma
+  console.log(newstr);          //  Prints: 'Smith, John'
 
 // Advanced search with flags
 
-	// Regular expressions have four optional flags that allow for global and case insensitive searching. These flags can be used separately or together in any order, and are included as part of the regular expression.
-	'g'		global search
-	'i'		case-insensitive search
-	'm'		multi-line search //	used to specify that a multiline input string should be treated as multiple lines. If the m flag is used, ^ and $ match at the start or end of any line within the input string instead of the start or end of the entire string.
-	'y'		a sticky search that matches starting at the currrent position in the target string
+  // Regular expressions have four optional flags that allow for global and case insensitive searching. These flags can be used separately or together in any order, and are included as part of the regular expression.
+  'g'   global search
+  'i'   case-insensitive search
+  'm'   multi-line search //  used to specify that a multiline input string should be treated as multiple lines. If the m flag is used, ^ and $ match at the start or end of any line within the input string instead of the start or end of the entire string.
+  'y'   a sticky search that matches starting at the currrent position in the target string
 
-	// To include a flag:
-	var regexp = /pattern/flag			||		var regexp = new RegExp("pattern", "flags");
-	// Flags cannot be included later
-	'
-	e.g.:'	var re		=	/\w+\s/g;		// a regular expression that looks for one or
-			var str		=	"fee fi fo fum";// more characters followed by a space,  and it looks for
-			var myArr	=	str.match(re);	// this combination throughout the string.
-			console.log(myArr);				// Prints ["fee ", "fi ", "fo "]
+  // To include a flag:
+  var regexp = /pattern/flag      ||    var regexp = new RegExp("pattern", "flags");
+  // Flags cannot be included later
+  '
+  e.g.:'  var re    = /\w+\s/g;   // a regular expression that looks for one or
+      var str   = "fee fi fo fum";// more characters followed by a space,  and it looks for
+      var myArr = str.match(re);  // this combination throughout the string.
+      console.log(myArr);       // Prints ["fee ", "fi ", "fo "]
 
 // Pure examples
 
-	1. Changing the input string order
-	// The name string contains multiple spaces and tabs,
-	// and may have multiple spaces between first and last names.
-	var names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ; Chris Hand ";
+  1. Changing the input string order
+  // The name string contains multiple spaces and tabs,
+  // and may have multiple spaces between first and last names.
+  var names = "Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ; Chris Hand ";
 
-	var output = ["---------- Original String\n", names + "\n"];
+  var output = ["---------- Original String\n", names + "\n"];
 
-	// Prepare two regular expression patterns and array storage.
-	// Split the string into array elements.
+  // Prepare two regular expression patterns and array storage.
+  // Split the string into array elements.
 
-	// pattern: possible white space then semicolon then possible white space
-	var pattern = /\s*;\s*/;
+  // pattern: possible white space then semicolon then possible white space
+  var pattern = /\s*;\s*/;
 
-	// Break the string into pieces separated by the pattern above and
-	// store the pieces in an array called nameList
-	var nameList = names.split(pattern);
+  // Break the string into pieces separated by the pattern above and
+  // store the pieces in an array called nameList
+  var nameList = names.split(pattern);
 
-	// new pattern: one or more characters then spaces then characters.
-	// Use parentheses to "memorize" portions of the pattern.
-	// The memorized portions are referred to later.
-	pattern = /(\w+)\s+(\w+)/;
+  // new pattern: one or more characters then spaces then characters.
+  // Use parentheses to "memorize" portions of the pattern.
+  // The memorized portions are referred to later.
+  pattern = /(\w+)\s+(\w+)/;
 
-	// New array for holding names being processed.
-	var bySurnameList = [];
+  // New array for holding names being processed.
+  var bySurnameList = [];
 
-	// Display the name array and populate the new array
-	// with comma-separated names, last first.
-	//
-	// The replace method removes anything matching the pattern
-	// and replaces it with the memorized string—second memorized portion
-	// followed by comma space followed by first memorized portion.
-	//
-	// The variables $1 and $2 refer to the portions
-	// memorized while matching the pattern.
+  // Display the name array and populate the new array
+  // with comma-separated names, last first.
+  //
+  // The replace method removes anything matching the pattern
+  // and replaces it with the memorized string—second memorized portion
+  // followed by comma space followed by first memorized portion.
+  //
+  // The variables $1 and $2 refer to the portions
+  // memorized while matching the pattern.
 
-	output.push("---------- After Split by Regular Expression");
+  output.push("---------- After Split by Regular Expression");
 
-	var i;
-	for (i = 0; i < nameList.length; i++){
-	  output.push(nameList[i]);
-	  bySurnameList[i] = nameList[i].replace(pattern, "$2, $1");
-	}
+  var i;
+  for (i = 0; i < nameList.length; i++){
+    output.push(nameList[i]);
+    bySurnameList[i] = nameList[i].replace(pattern, "$2, $1");
+  }
 
-	// Display the new array.
-	output.push("---------- Names Reversed");
-	for (i = 0; i < bySurnameList.length; i++){
-	  output.push(bySurnameList[i]);
-	}
+  // Display the new array.
+  output.push("---------- Names Reversed");
+  for (i = 0; i < bySurnameList.length; i++){
+    output.push(bySurnameList[i]);
+  }
 
-	// Sort by last name, then display the sorted array.
-	bySurnameList.sort();
-	output.push("---------- Sorted");
-	for (i = 0; i < bySurnameList.length; i++){
-	  output.push(bySurnameList[i]);
-	}
+  // Sort by last name, then display the sorted array.
+  bySurnameList.sort();
+  output.push("---------- Sorted");
+  for (i = 0; i < bySurnameList.length; i++){
+    output.push(bySurnameList[i]);
+  }
 
-	output.push("---------- End");
+  output.push("---------- End");
 
-	console.log(output.join("\n"));
+  console.log(output.join("\n"));
 
-	2. Using Special characters to verify input
-	// In the following example, the user is expected to enter a phone number. When the user presses the "Check" button, the script checks the validity of the number. If the number is valid (matches the character sequence specified by the regular expression), the script shows a message thanking the user and confirming the number. If the number is invalid, the script informs the user that the phone number is not valid.
+  2. Using Special characters to verify input
+  // In the following example, the user is expected to enter a phone number. When the user presses the "Check" button, the script checks the validity of the number. If the number is valid (matches the character sequence specified by the regular expression), the script shows a message thanking the user and confirming the number. If the number is invalid, the script informs the user that the phone number is not valid.
 
-	// The regular expression looks for zero or one open parenthesis \(?, followed by three digits \d{3}, followed by zero or one close parenthesis \)?, followed by one dash, forward slash, or decimal point and when found, remember the character ([-\/\.]), followed by three digits \d{3}, followed by the remembered match of a dash, forward slash, or decimal point \1, followed by four digits \d{4}.
+  // The regular expression looks for zero or one open parenthesis \(?, followed by three digits \d{3}, followed by zero or one close parenthesis \)?, followed by one dash, forward slash, or decimal point and when found, remember the character ([-\/\.]), followed by three digits \d{3}, followed by the remembered match of a dash, forward slash, or decimal point \1, followed by four digits \d{4}.
 
-	// The Change event activated when the user presses Enter sets the value of RegExp.input.
+  // The Change event activated when the user presses Enter sets the value of RegExp.input.
 
-	var re = /\(?\d{3}\)?([-\/\.])\d{3}\1\d{4}/;
-	function testInfo(phoneInput){
-		var OK = re.exec(phoneInput.value);
-		if (!OK)
-			window.alert(RegExp.input + " isn't a phone number with area code!");
-		else
-			window.alert("Thanks, your phone number is " + OK[0]);
-	}
+  var re = /\(?\d{3}\)?([-\/\.])\d{3}\1\d{4}/;
+  function testInfo(phoneInput){
+    var OK = re.exec(phoneInput.value);
+    if (!OK)
+      window.alert(RegExp.input + " isn't a phone number with area code!");
+    else
+      window.alert("Thanks, your phone number is " + OK[0]);
+  }
