@@ -2,6 +2,8 @@
 alias docker='sudo docker'
 
 alias be='bundle exec' # Shortcut for Ruby bundler
+alias ber='be rails' # Shortcut for Rails commands
+alias berk='be rake' # Shortcut for Rake commands
 
 # Nice processes tree
 alias px='ps axf -o pid,user,comm'
