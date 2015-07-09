@@ -2,6 +2,13 @@
 # Any of these options may be redefined on the base of each git repository in
 #   repo_folder/.git/config
 
+# Automatically make line endings CRLF-like
+[core]
+  autocrlf = true
+
+[push]
+  default = matching
+
 # This block defines how commits will be authored
 [user]
   name = Victor Polko\n\n\n\n\n
