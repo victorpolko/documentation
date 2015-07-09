@@ -1,0 +1,54 @@
+[
+  // Get rid of icons in Sublime 3
+  {
+    "class": "icon_file_type",
+    "content_margin": [0,0]
+  },
+  {
+    "class": "icon_folder",
+    "content_margin": [0,0]
+  },
+  {
+    "class": "icon_folder_loading",
+    "content_margin": [0,0]
+  },
+
+  // Set modified tabs text color
+  {
+    "class": "tab_label",
+    "settings": ["highlight_modified_tabs"],
+    "parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+    "fg": [255, 170, 0]
+  },
+
+  // Set autocomplete popup params
+  {
+    "class": "popup_control",
+    "content_margin": [2, 2],
+    "layer0.tint": [60, 60, 60],
+    "layer0.opacity": 1
+  },
+  {
+    "class": "auto_complete",
+    "row_padding": [4, 5]
+  },
+  {
+    "class": "auto_complete_label",
+    "fg": [150, 150, 150],
+    "match_fg": [255, 100, 155],
+    "selected_fg": [20, 20, 20],
+    "selected_match_fg": [255, 100, 155]
+  },
+  {
+    "class": "table_row",
+    "layer0.texture": "",
+    "layer0.tint": [200, 200, 200],
+    "layer0.opacity": 0.0,
+    "layer0.inner_margin": [3, 1]
+  },
+  {
+    "class": "table_row",
+    "attributes": ["selected"],
+    "layer0.opacity": 1.0
+  },
+]

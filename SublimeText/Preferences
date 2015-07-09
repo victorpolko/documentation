@@ -1,8 +1,27 @@
 {
 	"always_show_minimap_viewport": true,
+	"animation_enabled": false,
+	"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin",
+	"binary_file_patterns":
+	[
+		"*.jpg",
+		"*.jpeg",
+		"*.png",
+		"*.gif",
+		"*.ttf",
+		"*.tga",
+		"*.dds",
+		"*.ico",
+		"*.eot",
+		"*.pdf",
+		"*.swf",
+		"*.jar",
+		"*.zip",
+		"*.scssc"
+	],
 	"bold_folder_labels": true,
-	"caret_style": "phase",
-	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"caret_style": "solid",
+	"color_scheme": "Packages/Chosen Ones/Stereokai.tmTheme",
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
@@ -10,10 +29,11 @@
 	"font_size": 10,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
+	"hot_exit": true,
 	"ignored_packages":
 	[
-		"Vintage",
-		"AdvancedNewFile"
+		"AdvancedNewFile",
+		"Vintage"
 	],
 	"ignored_words":
 	[
@@ -21,17 +41,32 @@
 		"",
 		""
 	],
+	"indent_guide_options":
+	[
+		"draw_active"
+	],
+	"index_exclude_patterns":
+	[
+		"*.log",
+		"*.scssc",
+		"tmp/*"
+	],
+	"overlay_scroll_bars": "enabled",
 	"rulers":
 	[
 		0,
 		2,
-		130
+		90
 	],
 	"save_on_focus_lost": true,
+	"scroll_speed": 0,
 	"show_tab_close_buttons": false,
 	"tab_size": 2,
+	"theme": "Soda Dark 3.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": false,
 	"trim_trailing_white_space_on_save": true,
-	"word_wrap": true
+	"word_wrap": true,
+	"soda_classic_tabs": true,
+	"soda_folder_icons": false
 }

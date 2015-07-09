@@ -3,6 +3,8 @@
 	{ "keys": ["alt+1"], "command": "focus_group", "args": { "group": 0 } },
 	{ "keys": ["alt+2"], "command": "focus_group", "args": { "group": 1 } },
 	{ "keys": ["alt+3"], "command": "focus_group", "args": { "group": 2 } },
+	{ "keys": ["alt+up"], "command": "focus_neighboring_group", "args": {"forward": false} },
+	{ "keys": ["alt+down"], "command": "focus_neighboring_group" },
 	{
 		"keys": ["ctrl+1"],
 		"command": "set_layout",
@@ -25,14 +27,26 @@
 		}
 	},
 
+	// 3 and 4 for AngularJS
 	{
 		"keys": ["ctrl+3"],
 		"command": "set_layout",
 		"args":
 		{
-			"cols": [0.0, 0.17, 0.34, 1.0],
-			"rows": [0.0, 1.0],
-			"cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1]]
+			"cols": [0.0, 0.17, 0.2, 1.0],
+			"rows": [0.0, 0.9, 1.0],
+			"cells": [[0, 0, 1, 2], [1, 0, 2, 2], [2, 0, 3, 1], [2, 1, 3, 2]]
+		}
+	},
+
+	{
+		"keys": ["ctrl+4"],
+		"command": "set_layout",
+		"args":
+		{
+			"cols": [0.0, 0.17, 0.2, 1.0],
+			"rows": [0.0, 0.1, 1.0],
+			"cells": [[0, 0, 1, 2], [1, 0, 2, 2], [2, 0, 3, 1], [2, 1, 3, 2]]
 		}
 	},
 
