@@ -1,0 +1,134 @@
+/ Introduction
+/.
+  p
+    | First name:
+    input data-bind="textInput: firstName"
+    strong data-bind="text: firstName" todo
+  p
+    | Last name:
+    input data-bind="textInput: lastName"
+    strong data-bind="text: lastName" todo
+
+  p
+    | Full name:
+    strong data-bind="text: fullName" todo
+
+/ Working With Lists And Collections
+/.
+  h2
+    | Your seat reservations (<span data-bind="text: seats().length"></span>)
+
+  table.table
+    thead
+      tr
+        th Passenger name
+        th Meal
+        th Surcharge
+        th
+
+    tbody data-bind="foreach: seats"
+      tr
+        td: input data-bind="value: name"
+        td
+          select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"
+        td data-bind="text: formattedPrice"
+        td: a href="#" data-bind="click: $root.removeSeat" &times
+
+    button data-bind="click: addSeat, enable: seats().length < 5" Reserve another seat
+
+    h3 data-bind="visible: totalSurcharge() > 0"
+      | Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
+
+/ Single page Applications
+/.
+  h3 Webmail Service
+
+  ul.folders data-bind="foreach: folders"
+    li (data-bind="text: $data,
+                   css: { selected: $data == $root.chosenFolderId() },
+                   click: $root.goToFolder" )
+
+  / 'with' binding creates a binding context that will be used when binding any elements inside it. In this example, everything inside the <table> will be bound to chosenFolderData, so it's not necessary to use chosenFolderData. as a prefix before mails
+  table.mails data-bind="with: chosenFolderData"
+    thead
+      tr
+        th From
+        th To
+        th Subject
+        th Date
+
+    tbody data-bind="foreach: mails"
+      tr
+        td data-bind="text: from"
+        td data-bind="text: to"
+        td data-bind="text: subject"
+        td data-bind="text: date"
+
+  /! Chosen mail
+  .viewMail data-bind="with: chosenMailData"
+    .mailInfo
+      h1 data-bind="text: subject"
+      p: label From: <span data-bind="text: from"></span>
+      p: label To: <span data-bind="text: to"></span>
+      p: label Date: <span data-bind="text: date"></span>
+
+    p.message data-bind="html: messageContent"
+
+/ Creating custom bindings
+/.
+  h3 data-bind="text: question"
+  p Please distribute <b data-bind="text: pointsBudget"></b> points between the following options.
+
+  table.table
+    thead
+      tr
+        th Option
+        th Importance
+
+    tbody data-bind="foreach: answers"
+      tr
+        td data-bind="text: answerText"
+        / td: select data-bind="options: [1,2,3,4,5], value: koPoints"
+        td data-bind="starRating: koPoints"
+
+  h3 data-bind="fadeVisible: koPointsUsed() > pointsBudget"
+    | You've used too many points! Please remove some.
+
+  p You've got <b data-bind="text: pointsBudget - koPointsUsed()"></b> points left to use.
+  button.btn.btn-success data-bind="enable: koPointsUsed() <= pointsBudget, click: save, jqButton: { enable: koPointsUsed() <= pointsBudget }" Finished
+
+  <style type="text/css">
+    | table { background-color: #cde; padding: 1em; border-radius: 0.5em; }
+    | table th { text-align:left; }
+    | table th:last-child { min-width: 130px; }
+
+    | .starRating span { width:24px; height:24px; background-image: url(http://learn.knockoutjs.com/Content/TutorialSpecific/stars.png); display:inline-block; cursor: pointer; background-position: -24px 0; }
+    | .starRating span.chosen { background-position: 0 0; }
+    | .starRating:hover span { background-position: -24px 0; }
+    | .starRating:hover span.hoverChosen { background-position: 0 0; }
+  </style>
+
+
+/ Loading And Saving Data
+.
+  h3 Tasks
+
+  form data-bind="submit: addTask"
+    | Add task: <input data-bind="value: koNewTaskText" placeholder="What needs to be done?" />
+    button type="submit" Add
+
+  ul data-bind="foreach: koTasks, visible: koTasks().length > 0"
+    li
+      input type="checkbox" data-bind="checked: koIsDone"
+      input data-bind="value: koTitle, disable: koIsDone"
+      a href="#" data-bind="click: $parent.removeTask" Delete
+
+  ' You have <b data-bind="text: incompleteTasks().length">&nbsp;</b> incomplete task(s)
+  span data-bind="visible: incompleteTasks().length == 0 && koTasks().length > 0"
+    | - it's beer time!
+
+  /form action="http://learn.knockoutjs.com/tasks/saveform" method="post"
+    input type="hidden" name="tasks" data-bind="value: ko.toJSON(tasks)"
+    button type="submit" Save
+
+  button data-bind="click: save" Save
