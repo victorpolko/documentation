@@ -1,6 +1,7 @@
 Nginx
 
 After install:
+0. chkconfig nginx on
 1. cd /etc/nginx/
 2. nano nginx.conf
   # Add to the end of http block

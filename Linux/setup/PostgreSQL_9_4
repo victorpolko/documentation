@@ -1,0 +1,35 @@
+PostgreSQL 9.4, CentOS 7
+
+1. Remove postgres from default search repositories
+  nano /etc/yum.repos.d/CentOS-Base.repo
+    # Add to [base] and [update] blocks
+    exclude=postgresql*
+
+2. yum localinstall http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-1.noarch.rpm
+
+3. yum list postgres*
+
+4. yum install postgresql94-server postgresql-devel
+
+5. Init database
+  /usr/pgsql-9.4/bin/postgresql94-setup initdb
+
+6. Make pg autostartable
+  chkconfig postgresql-9.4 on
+
+7. service postgresql-9.4 start
+
+8. su - postgres
+
+9. createuser --interactive
+  <username>  # For name
+  y           # For superuser
+
+10. psql
+
+11. CREATE DATABASE rails WITH TEMPLATE postgres;
+
+12. exit
+
+13. Make sure bundler uses PostgreSQL config to build pg gem
+  $ bundle config build.pg --with-pg-config=/usr/pgsql-9.1/bin/pg_config
