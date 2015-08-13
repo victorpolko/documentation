@@ -2,27 +2,28 @@ Nginx
 
 After install:
 1. cd /etc/nginx/
-2. nano nginx.conf -> добавить:
-include /etc/nginx/sites-enabled/*.conf
+2. nano nginx.conf
+  # Add to the end of http block
+  include /etc/nginx/sites-enabled/*.conf
 
 3. mkdir sites-available
-4. nano sites-available/rentalyachts.com.conf -> Insert:
-upstream rails {
-    server unix:/home/rails/rentalyachts.com/shared/sockets/unicorn.sock fail_timeout=0;
+4. nano sites-available/<project_name>.conf -> Insert:
+upstream <username> {
+    server unix:/home/<username>/<project_name>/shared/sockets/unicorn.sock fail_timeout=0;
 }
 
 server {
-        server_name www.rentalyachts.com;
-        rewrite ^(.*)/$ http://rentalyachts.com$1 permanent;
+        server_name www.<project_name>;
+        rewrite ^(.*)/$ http://<project_name>$1 permanent;
 }
 
 server {
-        server_name         www.rentalyachts.com;
+        server_name         www.<project_name>;
         keepalive_timeout   5;
-        root /home/rails/rentalyachts.com/current/public;
+        root /home/<username>/<project_name>/current/public;
 
-        access_log /var/log/nginx/rentalyachts.com/access.log;
-        error_log /var/log/nginx/rentalyachts.com/error.log warn;
+        access_log /var/log/nginx/<project_name>/access.log;
+        error_log /var/log/nginx/<project_name>/error.log warn;
 
         gzip on;
 
@@ -31,14 +32,14 @@ server {
         }
 
         location ~ ^/(assets)/  {
-                root /home/rails/rentalyachts.com/current/public;
+                root /home/<username>/<project_name>/current/public;
                 gzip_static on;     # to serve pre-gzipped version
                 expires max;
                 add_header Cache-Control public;
         }
 
         location @app {
-                proxy_pass              http://rails;
+                proxy_pass              http://<username>;
                 proxy_redirect           off;
 
                 proxy_set_header   Host             $host;
@@ -61,27 +62,26 @@ server {
     error_page   500 502 503 504  /500.html;
 
     location = /500.html {
-                root /home/rails/rentalyachts.com/current/public;
+                root /home/<username>/<project_name>/current/public;
     }
 
     location = /robots.txt {
-                alias /home/rails/rentalyachts.com/current/public/robots.txt;
+                alias /home/<username>/<project_name>/current/public/robots.txt;
     }
 
     location = /favicon.ico {
-                alias /home/rails/rentalyachts.com/current/public/favicon.ico;
+                alias /home/<username>/<project_name>/current/public/favicon.ico;
     }
 
     location ~ ^/(images|javascripts|stylesheets|system|favicon\.ico|robots\.txt)/  {
-                root /home/rails/rentalyachts.com/current/public;
+                root /home/<username>/<project_name>/current/public;
                 expires max;
                 break;
     }
 }
 
 5. mkdir sites-enabled
-6. ln -s ../sites-available/rentalyachts.com.conf sites-enabled/
-
+6. ln -s ../sites-available/<project_name>.conf sites-enabled/
 
 ###
 # If CentOS version < 7 ->
@@ -219,7 +219,7 @@ server {
 
   8.chmod 755 /etc/init.d/nginx
 
-  9. /etc/init.d/nginx configtests
+  9. /etc/init.d/nginx configtest
   10. /etc/init.d/nginx restart
 
 ###
