@@ -5,11 +5,16 @@ alias be='bundle exec' # Shortcut for Ruby bundler
 alias ber='be rails' # Shortcut for Rails commands
 alias berk='be rake' # Shortcut for Rake commands
 
+alias reload!='source ~/.bashrc' # Reload bash
+
 # Nice processes tree
 alias px='ps axf -o pid,user,comm'
 
 # Search processes tree
-alias pxx='px | grep $1'
+alias pxx='ps aux | grep $1'
+
+# Search for text in files of current directory
+alias contains="grep -rnw '.' -e $1"
 
 alias tailf='tail -f'
 alias tailn='tail -n $1'
