@@ -6,81 +6,81 @@ After install:
   # Add to the end of http block
   include /etc/nginx/sites-enabled/*.conf
 
-3. mkdir sites-available
-4. nano sites-available/<project_name>.conf -> Insert:
-upstream <username> {
-    server unix:/home/<username>/<project_name>/shared/sockets/unicorn.sock fail_timeout=0;
-}
+3. mkdir sites-available sites-enabled
+4. nano sites-available/<project_name>.conf
+  upstream <username> {
+      server unix:/home/<username>/<project_name>/shared/sockets/unicorn.sock fail_timeout=0;
+  }
 
-server {
-        server_name www.<project_name>;
-        rewrite ^(.*)/$ http://<project_name>$1 permanent;
-}
+  server {
+          server_name www.<project_name>;
+          rewrite ^(.*)/$ http://<project_name>$1 permanent;
+  }
 
-server {
-        server_name         www.<project_name>;
-        keepalive_timeout   5;
-        root /home/<username>/<project_name>/current/public;
+  server {
+          server_name         www.<project_name>;
+          keepalive_timeout   5;
+          root /home/<username>/<project_name>/current/public;
 
-        access_log /var/log/nginx/<project_name>/access.log;
-        error_log /var/log/nginx/<project_name>/error.log warn;
+          access_log /var/log/nginx/<project_name>/access.log;
+          error_log /var/log/nginx/<project_name>/error.log warn;
 
-        gzip on;
+          gzip on;
 
-        location / {
-                try_files $uri @app;
-        }
+          location / {
+                  try_files $uri @app;
+          }
 
-        location ~ ^/(assets)/  {
-                root /home/<username>/<project_name>/current/public;
-                gzip_static on;     # to serve pre-gzipped version
-                expires max;
-                add_header Cache-Control public;
-        }
+          location ~ ^/(assets)/  {
+                  root /home/<username>/<project_name>/current/public;
+                  gzip_static on;     # to serve pre-gzipped version
+                  expires max;
+                  add_header Cache-Control public;
+          }
 
-        location @app {
-                proxy_pass              http://<username>;
-                proxy_redirect           off;
+          location @app {
+                  proxy_pass              http://<username>;
+                  proxy_redirect           off;
 
-                proxy_set_header   Host             $host;
-                proxy_set_header   X-Real-IP        $remote_addr;
-                proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+                  proxy_set_header   Host             $host;
+                  proxy_set_header   X-Real-IP        $remote_addr;
+                  proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
 
-                client_max_body_size       10m;
-                client_body_buffer_size    128k;
+                  client_max_body_size       10m;
+                  client_body_buffer_size    128k;
 
-                proxy_connect_timeout      90;
-                proxy_send_timeout         90;
-                proxy_read_timeout         90;
+                  proxy_connect_timeout      90;
+                  proxy_send_timeout         90;
+                  proxy_read_timeout         90;
 
-                proxy_buffer_size          4k;
-                proxy_buffers              4 32k;
-                proxy_busy_buffers_size    64k;
-                proxy_temp_file_write_size 64k;
-        }
+                  proxy_buffer_size          4k;
+                  proxy_buffers              4 32k;
+                  proxy_busy_buffers_size    64k;
+                  proxy_temp_file_write_size 64k;
+          }
 
-    error_page   500 502 503 504  /500.html;
+      error_page   500 502 503 504  /500.html;
 
-    location = /500.html {
-                root /home/<username>/<project_name>/current/public;
-    }
+      location = /500.html {
+                  root /home/<username>/<project_name>/current/public;
+      }
 
-    location = /robots.txt {
-                alias /home/<username>/<project_name>/current/public/robots.txt;
-    }
+      location = /robots.txt {
+                  alias /home/<username>/<project_name>/current/public/robots.txt;
+      }
 
-    location = /favicon.ico {
-                alias /home/<username>/<project_name>/current/public/favicon.ico;
-    }
+      location = /favicon.ico {
+                  alias /home/<username>/<project_name>/current/public/favicon.ico;
+      }
 
-    location ~ ^/(images|javascripts|stylesheets|system|favicon\.ico|robots\.txt)/  {
-                root /home/<username>/<project_name>/current/public;
-                expires max;
-                break;
-    }
-}
+      location ~ ^/(images|javascripts|stylesheets|system|favicon\.ico|robots\.txt)/  {
+                  root /home/<username>/<project_name>/current/public;
+                  expires max;
+                  break;
+      }
+  }
 
-5. mkdir sites-enabled
+5. mkdir /var/log/nginx/<project_name>
 6. ln -s ../sites-available/<project_name>.conf sites-enabled/
 
 ###
