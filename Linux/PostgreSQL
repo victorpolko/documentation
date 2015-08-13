@@ -1,0 +1,17 @@
+PostgreSQL 9.4
+
+1. nano /etc/yum.repos.d/CentOS-Base.repo -> Add:
+  exclude=postgresql*
+
+2. yum localinstall http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-1.noarch.rpm
+3. yum list postgres*
+4. yum install postgresql94-server postgresql-devel
+5. /usr/pgsql-9.4/bin/postgresql94-setup initdb # Init database
+6. chkconfig postgresql-9.4 on # Make pg autostartable
+7. service postgresql-9.4 start
+8. su - postgres
+9. createuser --interactive -> rails, y
+10. psql
+11. CREATE DATABASE rails WITH TEMPLATE postgres;
+12. exit
+13. bundle config build.pg --with-pg-config=/usr/pgsql-9.1/bin/pg_config

@@ -1,0 +1,435 @@
+Настройка машины для сервера
+CentOS Linux release 7.0.1406 (Core)
+
+Переменные:
+<project_name>  - Название проекта
+<db_name>       - Название базы данных
+<db_password>   - Пароль базы данных
+<secret_*>      - Секреты проекта
+
+# root
+  1. Дописал .bashrc
+    # .bashrc
+
+    HISTCONTROL=ignoreboth
+
+    # User specific aliases and functions
+
+    alias rm='rm -i'
+    alias cp='cp -i'
+    alias mv='mv -i'
+
+    # Source global definitions
+    if [ -f /etc/bashrc ]; then
+      . /etc/bashrc
+    fi
+
+    force_color_prompt=yes
+
+    if [ -n "$force_color_prompt" ]; then
+        if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+            # We have color support; assume it's compliant with Ecma-48
+            # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+            # a case would tend to support setf rather than setaf.)
+            color_prompt=yes
+        else
+            color_prompt=
+        fi
+    fi
+
+    if [ "$color_prompt" = yes ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[1;31m\]\u@rentalyachts\[\033[1;33m\]:\[\033[01;34m\]\w\[\033[1;31m\] \$ \[\033[00m\]'
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    fi
+    unset color_prompt force_color_prompt
+
+
+    # enable color support of ls and also add handy aliases
+    if [ -x /usr/bin/dircolors ]; then
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto'
+        #alias dir='dir --color=auto'
+        #alias vdir='vdir --color=auto'
+
+        alias grep='grep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias egrep='egrep --color=auto'
+    fi
+
+    if [ -f ~/.bash_aliases ]; then
+        . ~/.bash_aliases
+    fi
+
+  2. Создал .bash_aliases
+    alias reload!='source ~/.bashrc' # Reload bash
+
+    # Nice processes tree
+    alias px='ps axf -o pid,user,comm'
+
+    # Search processes tree
+    alias pxx='ps aux | grep $1'
+
+    # Search for text in files of current directory
+    alias contains="grep -rnw '.' -e $1"
+
+    alias tailf='tail -f'
+    alias tailn='tail -n $1'
+
+    # Some more ls aliases
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
+    alias lsc='ls | wc -l '
+
+  3. Создал группу nginx
+    groupadd nginx
+
+  4. Создал пользователя rails и добавил его в группу nginx
+    useradd -m -G nginx rails
+
+  5. Выключил пароль для пользователя rails
+    passwd -f -u rails
+
+  6. Копировал алиасы для bash в папку /home/rails
+    cp ~/.bash_aliases /home/rails
+
+  7. Установил необходимые пакеты для rvm
+    yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison sqlite-devel iconv-devel ## NOTE: For centos >= 5.4 iconv-devel is provided by glibc
+
+  8. Переключился на пользователя rails
+    su - rails
+
+$ rails
+  1. Дописал ~/.bashrc
+    # .bashrc
+
+    HISTCONTROL=ignoreboth
+
+    # Source global definitions
+    if [ -f /etc/bashrc ]; then
+            . /etc/bashrc
+    fi
+
+    # Uncomment the following line if you don't like systemctl's auto-paging feature:
+    # export SYSTEMD_PAGER=
+
+    # User specific aliases and functions
+    force_color_prompt=yes
+
+    if [ -n "$force_color_prompt" ]; then
+        if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+      # We have color support; assume it's compliant with Ecma-48
+      # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+      # a case would tend to support setf rather than setaf.)
+      color_prompt=yes
+        else
+      color_prompt=
+        fi
+    fi
+
+    if [ "$color_prompt" = yes ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[1;33m\]:\[\033[01;34m\]\w\[\033[01;32m\] \$ \[\033[00m\]'
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    fi
+    unset color_prompt force_color_prompt
+
+    # If this is an xterm set the title to user@host:dir
+    case "$TERM" in
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *)
+        ;;
+    esac
+
+    # enable color support of ls and also add handy aliases
+    if [ -x /usr/bin/dircolors ]; then
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+        alias ls='ls --color=auto'
+        #alias dir='dir --color=auto'
+        #alias vdir='vdir --color=auto'
+
+        alias grep='grep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias egrep='egrep --color=auto'
+    fi
+
+    # Alias definitions.
+    # You may want to put all your additions into a separate file like
+    # ~/.bash_aliases, instead of adding them here directly.
+    # See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+    if [ -f ~/.bash_aliases ]; then
+        . ~/.bash_aliases
+    fi
+
+    # enable programmable completion features (you don't need to enable
+    # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+    # sources /etc/bash.bashrc).
+    if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+        . /etc/bash_completion
+    fi
+
+  2. Задал всем файлам группу nginx
+    chgrp nginx .
+
+  3. Добавил группе файлов доступ на чтение и выполнение всех файлов
+    chmod g+rx .
+
+  4. Создал папку .ssh
+    mkdir .ssh
+
+  5. Задал права на все операции только пользователу rails для папки .ssh
+    chmod 0700 .ssh
+
+  6. Добавил свой публичный ключ и ключ Codeship в файл ~/.ssh/authorized_keys
+    nano ~/.ssh/authorized_keys
+
+  7. Задал права на этот файл
+    chmod 0600 ~/.ssh/authorized_keys
+
+  8. Создал ssh-ключ без пароля (Enter на любой промпт)
+    ssh-keygen -t rsa
+
+  9. Выслал Андрею публичный ключ
+    cat ~/.ssh/id_rsa.pub
+
+  10. Создал папку проекта <project_name>
+    mkdir <project_name>
+
+  11. Задал ей группу nginx
+    chgrp nginx <project_name>
+
+  12. Задал права группе для неё рекурсивно
+    chmod -R g+rx <project_name>
+
+  13. Создал папку <project_name>/shared для деплоя
+    mkdir <project_name>/shared
+
+  14. Создал папку <project_name>/shared/config для конфигурационных файлов деплоя
+    mkdir <project_name>/shared/config
+
+  15. Создал файл настройки базы данных
+    nano <project_name>/shared/config/database.yml
+      production:
+        adapter: postgresql
+        encoding: unicode
+        host: localhost
+        pool: 5
+        timeout: 5000
+        database: <db_name>
+        username: rails
+        password: <db_password>
+
+  16. Создал файл с секретами
+    nano <project_name>/shared/config/secrets.yml
+      production:
+        secret_key_base: <secret_kb>
+        devise_secret_key: <secret_devise>
+
+        <other secret keys from your secrets.yml>
+
+  17. Установил rvm
+    1) Добавил ключ Papis'а
+      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+    2) Запустил установку rvm
+      \curl -sSL https://get.rvm.io | bash
+    3) Нужно выйти из оболочки и войти заново, чтобы rvm подтянулся (проверить)
+      rails:~ $ exit
+      root:~ # su - rails
+      rails:~ $ rvm list
+        rvm rubies
+        # No rvm rubies installed yet. Try 'rvm help install'.
+    4) Установил ruby версии, которая указана в файле .ruby-version
+      rvm install 2.2.1
+    5) Добавил пользователя rails в группу rvm
+      rails:~ $ exit
+      root:~ # usermod -a -G rvm rails
+      root:~ # su - rails
+      rails:~ $
+
+  18. Установил bundler и rails
+    gem install rails bundler
+
+  19. С этим пользователем закончили
+    exit
+
+# root
+  9. Установил postgres
+    PostgreSQL 9.4
+
+    1) nano /etc/yum.repos.d/CentOS-Base.repo
+      # добавить в [base] и [updates]
+      exclude=postgresql*
+    2) yum localinstall http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-centos94-9.4-1.noarch.rpm
+    3) yum list postgres*
+    4) yum install -y postgresql94-server postgresql-devel
+
+  10. Настроил postgres
+    1) Инициализация базы данных
+      /usr/pgsql-9.4/bin/postgresql94-setup initdb
+    2) Автостарт
+      chkconfig postgresql-9.4 on
+    3) Доступ к базе по паролю
+      nano /var/lib/pgsql/9.4/data/pg_hba.conf
+        # Заменить peer и ident на md5
+    4) service postgresql-9.4 start
+    5) su - postgres
+    6) createuser --interactive
+      rails
+      y
+    7) psql
+    8) Задать пароль пользователю rails, который записан в shared/config/database.yml
+      ALTER ROLE rails WITH PASSWORD '<db_password>';
+    9)  CREATE DATABASE rails WITH TEMPLATE postgres;
+    10) CREATE DATABASE <db_name> WITH OWNER rails;
+    11) CREATE DATABASE rails WITH TEMPLATE postgres;
+    12) exit
+    13) Необходимо сказать bundler, чтобы он ставил гем pg с конфигурационным файлом самого PostgreSQL
+      root:~ # su - rails
+      rails:~ $ bundle config build.pg --with-pg-config=/usr/pgsql-9.4/bin/pg_config
+      rails:~ $ exit
+      root:~ #
+
+  11. Установил nginx
+    1) Добавил репозиторий для nginx
+      nano /etc/yum.repos.d/nginx.repo
+        [nginx]
+        name=nginx repo
+        baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+        gpgcheck=0
+        enabled=1
+
+    2) Установил nginx
+      yum install -y nginx
+
+    3) Автостарт
+      chkconfig nginx on
+
+  12. Настроил nginx
+    1) Все команды будут из папки nginx, поэтому нужно туда перейти
+      cd /etc/nginx/
+
+    2) Создал структуру для быстрого включения/выключения сайта
+      mkdir sites-enabled sites-available
+
+    3) Добавил в файл nginx.conf в конец блока http файлы из папки sites-enabled
+      nano nginx.conf
+        include /etc/nginx/sites-enabled/*.conf;
+
+    4) Настроил конфигурацию сайта: здесь включён gzip для ассетов
+      nano sites-available/<project_name>.conf
+        upstream rails {
+            server unix:/home/rails/<project_name>/shared/sockets/unicorn.sock fail_timeout=0;
+        }
+
+        server {
+                server_name www.<project_name>;
+                rewrite ^(.*)/$ http://<project_name>$1 permanent;
+        }
+
+        server {
+                server_name         www.<project_name>;
+                keepalive_timeout   5;
+                root /home/rails/<project_name>/current/public;
+
+                access_log /var/log/nginx/<project_name>/access.log;
+                error_log /var/log/nginx/<project_name>/error.log warn;
+
+                gzip on;
+
+                location / {
+                        try_files $uri @app;
+                }
+
+                location ~ ^/(assets)/  {
+                        root /home/rails/<project_name>/current/public;
+                        gzip_static on;     # to serve pre-gzipped version
+                        expires max;
+                        add_header Cache-Control public;
+                }
+
+                location @app {
+                        proxy_pass              http://rails;
+                        proxy_redirect           off;
+
+                        proxy_set_header   Host             $host;
+                        proxy_set_header   X-Real-IP        $remote_addr;
+                        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+
+                        client_max_body_size       10m;
+                        client_body_buffer_size    128k;
+
+                        proxy_connect_timeout      90;
+                        proxy_send_timeout         90;
+                        proxy_read_timeout         90;
+
+                        proxy_buffer_size          4k;
+                        proxy_buffers              4 32k;
+                        proxy_busy_buffers_size    64k;
+                        proxy_temp_file_write_size 64k;
+                }
+
+            error_page   500 502 503 504  /500.html;
+
+            location = /500.html {
+                        root /home/rails/<project_name>/current/public;
+            }
+
+            location = /robots.txt {
+                        alias /home/rails/<project_name>/current/public/robots.txt;
+            }
+
+            location = /favicon.ico {
+                        alias /home/rails/<project_name>/current/public/favicon.ico;
+            }
+
+            location ~ ^/(images|javascripts|stylesheets|system|favicon\.ico|robots\.txt)/  {
+                        root /home/rails/<project_name>/current/public;
+                        expires max;
+                        break;
+            }
+        }
+
+    5) Сделал симлинк на этот файл в папке sites-enabled
+      ln -s ../sites-available/<project_name>.conf sites-enabled/
+
+    6) Создал папку для логов
+      mkdir /var/log/nginx/<project_name>
+
+    7) Проверка синтаксиса (старый /etc/init.d/configtest)
+      nginx -t
+
+    8) Запустил nginx, проверил, что он активен
+      service nginx restart
+      pxx nginx
+        root     20388  0.0  0.0  48144  1236 ?        Ss   07:21   0:00 nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf
+        nginx    20389  0.0  0.0  48556  1984 ?        S    07:21   0:00 nginx: worker process
+        root     20391  0.0  0.0 112640   992 pts/1    S+   07:21   0:00 grep --color=auto nginx
+
+  13. Установил Git
+    yum install -y git
+
+  14. Установил nodejs
+    curl --silent --location https://rpm.nodesource.com/setup | bash -
+    yum -y install nodejs
+
+  15. Установил дополнительные утилиты, которые необходимы проекту
+    1) ImageMagick
+      yum install -y gcc php-devel php-pear ImageMagick ImageMagick-devel
+
+    2) wkhtmltopdf (PDF generator)
+      yum install -y xorg-x11-fonts-75dpi xorg-x11-fonts-Type1
+      wget http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-centos7-amd64.rpm
+      rpm -Uvh wkhtmltox-0.12.2.1_linux-centos7-amd64.rpm
+      rm wkhtmltox-0.12.2.1_linux-centos7-amd64.rpm
+
+    3) bower
+      root:~ # su - rails
+      rails:~ $ npm install -g bower
+        # Упадёт с ошибкой о правах и при этом создаст папку ~/.npm
+      rails:~ $ exit
+      root:~ # chown -R rails /home/rails/.npm
+      root:~ # npm install -g bower

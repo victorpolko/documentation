@@ -1,0 +1,229 @@
+Nginx
+
+After install:
+1. cd /etc/nginx/
+2. nano nginx.conf -> добавить:
+include /etc/nginx/sites-enabled/*.conf
+
+3. mkdir sites-available
+4. nano sites-available/rentalyachts.com.conf -> Insert:
+upstream rails {
+    server unix:/home/rails/rentalyachts.com/shared/sockets/unicorn.sock fail_timeout=0;
+}
+
+server {
+        server_name www.rentalyachts.com;
+        rewrite ^(.*)/$ http://rentalyachts.com$1 permanent;
+}
+
+server {
+        server_name         www.rentalyachts.com;
+        keepalive_timeout   5;
+        root /home/rails/rentalyachts.com/current/public;
+
+        access_log /var/log/nginx/rentalyachts.com/access.log;
+        error_log /var/log/nginx/rentalyachts.com/error.log warn;
+
+        gzip on;
+
+        location / {
+                try_files $uri @app;
+        }
+
+        location ~ ^/(assets)/  {
+                root /home/rails/rentalyachts.com/current/public;
+                gzip_static on;     # to serve pre-gzipped version
+                expires max;
+                add_header Cache-Control public;
+        }
+
+        location @app {
+                proxy_pass              http://rails;
+                proxy_redirect           off;
+
+                proxy_set_header   Host             $host;
+                proxy_set_header   X-Real-IP        $remote_addr;
+                proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+
+                client_max_body_size       10m;
+                client_body_buffer_size    128k;
+
+                proxy_connect_timeout      90;
+                proxy_send_timeout         90;
+                proxy_read_timeout         90;
+
+                proxy_buffer_size          4k;
+                proxy_buffers              4 32k;
+                proxy_busy_buffers_size    64k;
+                proxy_temp_file_write_size 64k;
+        }
+
+    error_page   500 502 503 504  /500.html;
+
+    location = /500.html {
+                root /home/rails/rentalyachts.com/current/public;
+    }
+
+    location = /robots.txt {
+                alias /home/rails/rentalyachts.com/current/public/robots.txt;
+    }
+
+    location = /favicon.ico {
+                alias /home/rails/rentalyachts.com/current/public/favicon.ico;
+    }
+
+    location ~ ^/(images|javascripts|stylesheets|system|favicon\.ico|robots\.txt)/  {
+                root /home/rails/rentalyachts.com/current/public;
+                expires max;
+                break;
+    }
+}
+
+5. mkdir sites-enabled
+6. ln -s ../sites-available/rentalyachts.com.conf sites-enabled/
+
+
+###
+# If CentOS version < 7 ->
+###
+  7. nano /etc/init.d/nginx -> Insert:
+  #!/bin/sh
+  #
+  # nginx - this script starts and stops the nginx daemon
+  #
+  # chkconfig:   - 85 15
+  # description:  Nginx is an HTTP(S) server, HTTP(S) reverse \
+  #               proxy and IMAP/POP3 proxy server
+  # processname: nginx
+  # config:      /etc/nginx/nginx.conf
+  # config:      /etc/sysconfig/nginx
+  # pidfile:     /var/run/nginx.pid
+
+  # Source function library.
+  . /etc/rc.d/init.d/functions
+
+  # Source networking configuration.
+  . /etc/sysconfig/network
+
+  # Check that networking is up.
+  [ "$NETWORKING" = "no" ] && exit 0
+
+  nginx="/usr/sbin/nginx"
+  prog=$(basename $nginx)
+
+  NGINX_CONF_FILE="/etc/nginx/nginx.conf"
+
+  [ -f /etc/sysconfig/nginx ] && . /etc/sysconfig/nginx
+
+  lockfile=/var/lock/subsys/nginx
+
+  make_dirs() {
+     # make required directories
+     user=`$nginx -V 2>&1 | grep "configure arguments:" | sed 's/[^*]*--user=\([^ ]*\).*/\1/g' -`
+     if [ -z "`grep $user /etc/passwd`" ]; then
+         useradd -M -s /bin/nologin $user
+     fi
+     options=`$nginx -V 2>&1 | grep 'configure arguments:'`
+     for opt in $options; do
+         if [ `echo $opt | grep '.*-temp-path'` ]; then
+             value=`echo $opt | cut -d "=" -f 2`
+             if [ ! -d "$value" ]; then
+                 # echo "creating" $value
+                 mkdir -p $value && chown -R $user $value
+             fi
+         fi
+     done
+  }
+
+  start() {
+      [ -x $nginx ] || exit 5
+      [ -f $NGINX_CONF_FILE ] || exit 6
+      make_dirs
+      echo -n $"Starting $prog: "
+      daemon $nginx -c $NGINX_CONF_FILE
+      retval=$?
+      echo
+      [ $retval -eq 0 ] && touch $lockfile
+      return $retval
+  }
+
+  stop() {
+      echo -n $"Stopping $prog: "
+      killproc $prog -QUIT
+      retval=$?
+      echo
+      [ $retval -eq 0 ] && rm -f $lockfile
+      return $retval
+  }
+
+  restart() {
+      configtest || return $?
+      stop
+      sleep 1
+      start
+  }
+
+  reload() {
+      configtest || return $?
+      echo -n $"Reloading $prog: "
+      killproc $nginx -HUP
+      RETVAL=$?
+      echo
+  }
+
+  force_reload() {
+      restart
+  }
+
+  configtest() {
+    $nginx -t -c $NGINX_CONF_FILE
+  }
+
+  rh_status() {
+      status $prog
+  }
+
+  rh_status_q() {
+      rh_status >/dev/null 2>&1
+  }
+
+  case "$1" in
+      start)
+          rh_status_q && exit 0
+          $1
+          ;;
+      stop)
+          rh_status_q || exit 0
+          $1
+          ;;
+      restart|configtest)
+          $1
+          ;;
+      reload)
+          rh_status_q || exit 7
+          $1
+          ;;
+      force-reload)
+          force_reload
+          ;;
+      status)
+          rh_status
+          ;;
+      condrestart|try-restart)
+          rh_status_q || exit 0
+              ;;
+      *)
+          echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest}"
+          exit 2
+  esac
+
+  8.chmod 755 /etc/init.d/nginx
+
+  9. /etc/init.d/nginx configtests
+  10. /etc/init.d/nginx restart
+
+###
+# If CentOS version >= 7 ->
+###
+  7. nginx -t
+  8. service nginx restart
