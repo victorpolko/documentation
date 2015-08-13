@@ -2,6 +2,7 @@
 CentOS Linux release 7.0.1406 (Core)
 
 Переменные:
+<username>      - Имя пользователя
 <project_name>  - Название проекта
 <db_name>       - Название базы данных
 <db_password>   - Пароль базы данных
@@ -85,22 +86,22 @@ CentOS Linux release 7.0.1406 (Core)
   3. Создал группу nginx
     groupadd nginx
 
-  4. Создал пользователя rails и добавил его в группу nginx
-    useradd -m -G nginx rails
+  4. Создал пользователя <username> и добавил его в группу nginx
+    useradd -m -G nginx <username>
 
-  5. Выключил пароль для пользователя rails
-    passwd -f -u rails
+  5. Выключил пароль для пользователя <username>
+    passwd -f -u <username>
 
-  6. Копировал алиасы для bash в папку /home/rails
-    cp ~/.bash_aliases /home/rails
+  6. Копировал алиасы для bash в папку /home/<username>
+    cp ~/.bash_aliases /home/<username>
 
   7. Установил необходимые пакеты для rvm
     yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison sqlite-devel iconv-devel ## NOTE: For centos >= 5.4 iconv-devel is provided by glibc
 
-  8. Переключился на пользователя rails
-    su - rails
+  8. Переключился на пользователя <username>
+    su - <username>
 
-$ rails
+$ <username>
   1. Дописал ~/.bashrc
     # .bashrc
 
@@ -181,7 +182,7 @@ $ rails
   4. Создал папку .ssh
     mkdir .ssh
 
-  5. Задал права на все операции только пользователу rails для папки .ssh
+  5. Задал права на все операции только пользователю <username> для папки .ssh
     chmod 0700 .ssh
 
   6. Добавил свой публичный ключ и ключ Codeship в файл ~/.ssh/authorized_keys
@@ -220,7 +221,7 @@ $ rails
         pool: 5
         timeout: 5000
         database: <db_name>
-        username: rails
+        username: <username>
         password: <db_password>
 
   16. Создал файл с секретами
@@ -237,18 +238,18 @@ $ rails
     2) Запустил установку rvm
       \curl -sSL https://get.rvm.io | bash
     3) Нужно выйти из оболочки и войти заново, чтобы rvm подтянулся (проверить)
-      rails:~ $ exit
-      root:~ # su - rails
-      rails:~ $ rvm list
+      <username>:~ $ exit
+      root:~ # su - <username>
+      <username>:~ $ rvm list
         rvm rubies
         # No rvm rubies installed yet. Try 'rvm help install'.
     4) Установил ruby версии, которая указана в файле .ruby-version
       rvm install 2.2.1
-    5) Добавил пользователя rails в группу rvm
-      rails:~ $ exit
-      root:~ # usermod -a -G rvm rails
-      root:~ # su - rails
-      rails:~ $
+    5) Добавил пользователя <username> в группу rvm
+      <username>:~ $ exit
+      root:~ # usermod -a -G rvm <username>
+      root:~ # su - <username>
+      <username>:~ $
 
   18. Установил bundler и rails
     gem install rails bundler
@@ -278,19 +279,19 @@ $ rails
     4) service postgresql-9.4 start
     5) su - postgres
     6) createuser --interactive
-      rails
+      <username>
       y
     7) psql
-    8) Задать пароль пользователю rails, который записан в shared/config/database.yml
-      ALTER ROLE rails WITH PASSWORD '<db_password>';
-    9)  CREATE DATABASE rails WITH TEMPLATE postgres;
-    10) CREATE DATABASE <db_name> WITH OWNER rails;
-    11) CREATE DATABASE rails WITH TEMPLATE postgres;
+    8) Задать пароль пользователю <username>, который записан в shared/config/database.yml
+      ALTER ROLE <username> WITH PASSWORD '<db_password>';
+    9)  CREATE DATABASE <username> WITH TEMPLATE postgres;
+    10) CREATE DATABASE <db_name> WITH OWNER <username>;
+    11) CREATE DATABASE <username> WITH TEMPLATE postgres;
     12) exit
     13) Необходимо сказать bundler, чтобы он ставил гем pg с конфигурационным файлом самого PostgreSQL
-      root:~ # su - rails
-      rails:~ $ bundle config build.pg --with-pg-config=/usr/pgsql-9.4/bin/pg_config
-      rails:~ $ exit
+      root:~ # su - <username>
+      <username>:~ $ bundle config build.pg --with-pg-config=/usr/pgsql-9.4/bin/pg_config
+      <username>:~ $ exit
       root:~ #
 
   11. Установил nginx
@@ -321,8 +322,8 @@ $ rails
 
     4) Настроил конфигурацию сайта: здесь включён gzip для ассетов
       nano sites-available/<project_name>.conf
-        upstream rails {
-            server unix:/home/rails/<project_name>/shared/sockets/unicorn.sock fail_timeout=0;
+        upstream <username> {
+            server unix:/home/<username>/<project_name>/shared/sockets/unicorn.sock fail_timeout=0;
         }
 
         server {
@@ -333,7 +334,7 @@ $ rails
         server {
                 server_name         www.<project_name>;
                 keepalive_timeout   5;
-                root /home/rails/<project_name>/current/public;
+                root /home/<username>/<project_name>/current/public;
 
                 access_log /var/log/nginx/<project_name>/access.log;
                 error_log /var/log/nginx/<project_name>/error.log warn;
@@ -345,14 +346,14 @@ $ rails
                 }
 
                 location ~ ^/(assets)/  {
-                        root /home/rails/<project_name>/current/public;
+                        root /home/<username>/<project_name>/current/public;
                         gzip_static on;     # to serve pre-gzipped version
                         expires max;
                         add_header Cache-Control public;
                 }
 
                 location @app {
-                        proxy_pass              http://rails;
+                        proxy_pass              http://<username>;
                         proxy_redirect           off;
 
                         proxy_set_header   Host             $host;
@@ -375,19 +376,19 @@ $ rails
             error_page   500 502 503 504  /500.html;
 
             location = /500.html {
-                        root /home/rails/<project_name>/current/public;
+                        root /home/<username>/<project_name>/current/public;
             }
 
             location = /robots.txt {
-                        alias /home/rails/<project_name>/current/public/robots.txt;
+                        alias /home/<username>/<project_name>/current/public/robots.txt;
             }
 
             location = /favicon.ico {
-                        alias /home/rails/<project_name>/current/public/favicon.ico;
+                        alias /home/<username>/<project_name>/current/public/favicon.ico;
             }
 
             location ~ ^/(images|javascripts|stylesheets|system|favicon\.ico|robots\.txt)/  {
-                        root /home/rails/<project_name>/current/public;
+                        root /home/<username>/<project_name>/current/public;
                         expires max;
                         break;
             }
@@ -427,9 +428,9 @@ $ rails
       rm wkhtmltox-0.12.2.1_linux-centos7-amd64.rpm
 
     3) bower
-      root:~ # su - rails
-      rails:~ $ npm install -g bower
+      root:~ # su - <username>
+      <username>:~ $ npm install -g bower
         # Упадёт с ошибкой о правах и при этом создаст папку ~/.npm
-      rails:~ $ exit
-      root:~ # chown -R rails /home/rails/.npm
+      <username>:~ $ exit
+      root:~ # chown -R <username> /home/<username>/.npm
       root:~ # npm install -g bower
