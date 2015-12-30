@@ -1,8 +1,16 @@
 [
 	//focus groups
-	{ "keys": ["alt+1"], "command": "focus_group", "args": { "group": 0 } },
-	{ "keys": ["alt+2"], "command": "focus_group", "args": { "group": 1 } },
-	{ "keys": ["alt+3"], "command": "focus_group", "args": { "group": 2 } },
+	{ "keys": ["alt+keypad1"], "command": "select_by_index", "args": { "index": 0 } },
+	{ "keys": ["alt+keypad2"], "command": "select_by_index", "args": { "index": 1 } },
+	{ "keys": ["alt+keypad3"], "command": "select_by_index", "args": { "index": 2 } },
+	{ "keys": ["alt+keypad4"], "command": "select_by_index", "args": { "index": 3 } },
+	{ "keys": ["alt+keypad5"], "command": "select_by_index", "args": { "index": 4 } },
+	{ "keys": ["alt+keypad6"], "command": "select_by_index", "args": { "index": 5 } },
+	{ "keys": ["alt+keypad7"], "command": "select_by_index", "args": { "index": 6 } },
+	{ "keys": ["alt+keypad8"], "command": "select_by_index", "args": { "index": 7 } },
+	{ "keys": ["alt+keypad9"], "command": "select_by_index", "args": { "index": 8 } },
+	{ "keys": ["alt+keypad0"], "command": "select_by_index", "args": { "index": 9 } },
+
 	{ "keys": ["alt+up"], "command": "focus_neighboring_group", "args": {"forward": false} },
 	{ "keys": ["alt+down"], "command": "focus_neighboring_group" },
 	{
@@ -27,15 +35,14 @@
 		}
 	},
 
-	// 3 and 4 for AngularJS
 	{
 		"keys": ["ctrl+3"],
 		"command": "set_layout",
 		"args":
 		{
-			"cols": [0.0, 0.17, 0.2, 1.0],
-			"rows": [0.0, 0.9, 1.0],
-			"cells": [[0, 0, 1, 2], [1, 0, 2, 2], [2, 0, 3, 1], [2, 1, 3, 2]]
+			"cols": [0.0, 0.17, 1.0],
+			"rows": [0.0, 0.2, 1.0],
+			"cells": [[0, 0, 1, 2], [1, 0, 2, 1], [1, 1, 2, 2]]
 		}
 	},
 
@@ -50,6 +57,9 @@
 		}
 	},
 
-  { "keys": ["shift+alt+tab"], "command": "reindent"},
-  { "keys": ["ctrl+shift+r"], "command": "goto_symbol_in_project" }
+	{ "keys": ["shift+alt+tab"], "command": "reindent" },
+	{ "keys": ["ctrl+shift+r"], "command": "goto_symbol_in_project" },
+
+	{ "keys": ["ctrl+keypad_enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"} },
+	{ "keys": ["ctrl+shift+keypad_enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"} }
 ]
