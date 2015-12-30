@@ -12,8 +12,8 @@
  ssh hackday@85.25.209.110 -p 21212 # !hackday server
  ssh optihouse@opti.house -p 21212 # !optihouse server
  ssh boats@boats.mkechinov.ru -p 21212 # !boats staging server
- ssh rails@188.166.88.215  # !ssh rentalyachts production server
- ssh root@188.166.88.215  # !ssh root rentalyachts production server
+ ssh rails@188.166.124.47  # !ssh rentalyachts production server
+ ssh root@188.166.124.47  # !ssh root rentalyachts production server
 
  git update-index --assume-unchanged path/to/file # git update-index --no-assume-unchanged path/to/file
  git refresh # !refresh
@@ -43,3 +43,4 @@
  cap staging deploy
 
  git st
+ber s

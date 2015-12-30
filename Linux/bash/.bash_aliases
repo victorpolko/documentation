@@ -4,6 +4,9 @@ alias docker='sudo docker'
 alias be='bundle exec' # Shortcut for Ruby bundler
 alias ber='be rails' # Shortcut for Rails commands
 alias berk='be rake' # Shortcut for Rake commands
+alias berkmig='bundle exec rake db:migrate'
+
+alias bef='be foreman' # Shortcut for foreman commands
 
 alias reload!='source ~/.bashrc' # Reload bash
 
@@ -11,7 +14,7 @@ alias reload!='source ~/.bashrc' # Reload bash
 alias px='ps axf -o pid,user,comm'
 
 # Search processes tree
-alias pxx='ps aux | grep $1'
+alias pxx='ps aux | grep -v grep | grep $1'
 
 # Search for text in files of current directory
 alias contains="grep -rnw '.' -e $1"
