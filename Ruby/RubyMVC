@@ -156,5 +156,3 @@
 
   # Second option for has_many association defines what Rails should do when Item instance is deleted, but bindings still exist, which is no good
   # Here we tell it to destroy all dependent instances when an Item is deleted. Other option is to :nullify associations so that dependent instances continue to exist without parent instance.
-
-
