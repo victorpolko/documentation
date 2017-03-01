@@ -1,0 +1,55 @@
+1. Complex HTML-forms
+  in order to get correct serialized objects like
+  "extras" => [
+        [ 0] {
+               "name" => "220V generator",
+                 "id" => "848030",
+           "quantity" => "1",
+          "payatbase" => "1"
+        },
+        [ 1] {
+              "name" => "airport transfer",
+          "quantity" => "1"
+        },
+        [ 2] {
+               "name" => "Commissioning",
+                 "id" => "848033",
+           "quantity" => "1",
+          "payatbase" => "1"
+        },
+        ...
+      ]
+  without ids going in wrong way, it is NECESSARY to separate sub-objects with [name] attribute:
+  Slim (wrong):
+    input.check_boxes.optional type="checkbox" name="order[extras][][id]" data-bind="checked: koChecked, value: id"
+    input type="hidden" name="order[extras][][name]" data-bind="value: name"
+    input type="hidden" name="order[extras][][quantity]" data-bind="value: quantity"
+
+  will result in:
+    "extras" => [
+          [ 0] {
+                "id" => "848030"
+          },
+          [ 1] {
+                 "name" => "220V generator",
+             "quantity" => "1",
+            "payatbase" => "1"
+          },
+          [ 2] {
+                "name" => "airport transfer",
+            "quantity" => "1",
+                  "id" => "848033"
+          },
+          [ 3] {
+                 "name" => "Commissioning",
+             "quantity" => "1",
+            "payatbase" => "1"
+          },
+          ...
+        ]
+
+
+  Slim (correct):
+    input type="hidden" name="order[extras][][name]" data-bind="value: name"
+    input.check_boxes.optional type="checkbox" name="order[extras][][id]" data-bind="checked: koChecked, value: id"
+    input type="hidden" name="order[extras][][quantity]" data-bind="value: quantity"

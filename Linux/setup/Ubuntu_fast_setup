@@ -22,8 +22,10 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 rvm reinstall 2.1.5 # reinstall all rubies if there were any, because they are in home folder
 
 # Remove unknown monitor
+# VGA-1 is the name of monitor which might be get with 'xrandr'
+# Even if you see `VGA1`, use VGA-1 here
 nano /etc/default/grub
-GRUB_CMDLINE_LINUX="video=VGA-1:d # VGA-1 is the name of monitor which might be get with 'xrandr'
+GRUB_CMDLINE_LINUX="video=VGA-1:d
 
 # Set color for root bash, remove aliases and replace them with working ones
 nano ~/.bashrc

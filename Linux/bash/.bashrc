@@ -54,7 +54,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[1;33m\]:\[\033[01;34m\]\w\[\033[01;32m\] \$ \[\033[00m\]'
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]me\[\033[1;33m\]:\[\033[01;34m\]\w\[\033[01;32m\] λ \[\033[00m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -100,7 +100,6 @@ fi
 export BUNDLER_EDITOR=subl
 
 # N (node manager)
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export NODE_PATH=$NODE_PATH:$HOME/n/lib/node_modules
 
 # RVM (should be first in the PATH, because it barks on you otherwise)

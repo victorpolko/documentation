@@ -15,7 +15,7 @@
  ssh rails@188.166.124.47  # !ssh rentalyachts production server
  ssh root@188.166.124.47  # !ssh root rentalyachts production server
 
- git update-index --assume-unchanged path/to/file # git update-index --no-assume-unchanged path/to/file
+ # git update-index --assume-unchanged path/to/file # git update-index --no-assume-unchanged path/to/file
  git refresh # !refresh
 
  for i in folder2/*.jpg; do convert -strip -interlace Plane -quality 80 $i $i; done # !optimize files in folder2
@@ -27,6 +27,8 @@
  # cap production deploy && sleep 10 && cap production deploy:stop && sleep 2 && cap production deploy:start # !deploy
  # cap production deploy:stop deploy:start # !deploy:restart
  # cap production deploy:stop
+ cap production deploy
+ cap staging deploy
 
  /home/victor/BlackBerry/BBTools/bin/blackberry-signer -gui # !BlackBerry signing GUI
  /home/victor/BlackBerry/BBTools/bin/blackberry-apkpackager -gui & # !BlackBerry repack .apk to .bar
@@ -39,8 +41,7 @@
 
  # coffee -c 13-HTTP-JSON-API-server/*.coffee && learnyounode verify 13-HTTP-JSON-API-server/http-json-api-server.js
 
- cap production deploy
- cap staging deploy
+ google-chrome --proxy-server="192.168.129.17:3128" --proxy-bypass-list="127.0.0.1,www.metaildev.co.uk,cdn.metaildev.co.u&" &
 
  git st
-ber s
+ sudo -i
