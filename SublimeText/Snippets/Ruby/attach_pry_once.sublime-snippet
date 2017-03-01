@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+__will_bind__ = true
+binding.pry ${1:if Rails.env.development? && __will_bind__}
+__will_bind__ = false
+]]></content>
+  <tabTrigger>pryo</tabTrigger>
+  <scope>source.ruby</scope>
+</snippet>

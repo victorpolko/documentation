@@ -2,6 +2,6 @@
   <content><![CDATA[
 binding.pry ${1:if Rails.env.development?}
 ]]></content>
-  <tabTrigger>pry</tabTrigger>
+  <tabTrigger>deb</tabTrigger>
   <scope>source.ruby</scope>
 </snippet>

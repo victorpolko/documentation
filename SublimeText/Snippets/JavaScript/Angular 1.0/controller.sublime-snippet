@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+${1:angular.module('${2:moduleName}')}
+
+.controller('${3:Some}Ctrl', ['${4:dependency}', function ${3:Some}Ctrl(${4:dependency}) {
+  ${0:}
+}])
+]]></content>
+  <tabTrigger>ng:con</tabTrigger>
+  <scope>source.javascript, source.js</scope>
+</snippet>

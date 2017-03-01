@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+class ${1:ClassName}VM
+  constructor: (${3:arguments}) ->
+    ${4:# ...}
+
+\$ ->
+  ko.applyBindings new ${1:ClassName}VM, document.getElementById('${2:}')
+]]></content>
+  <tabTrigger>kovm</tabTrigger>
+  <scope>source.coffee</scope>
+</snippet>

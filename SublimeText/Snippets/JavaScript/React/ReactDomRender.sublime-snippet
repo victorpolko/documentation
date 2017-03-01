@@ -1,0 +1,10 @@
+<snippet>
+  <content><![CDATA[
+ReactDOM.render(
+  <${1:ComponentName} ${2:props}/>,
+  document.getElementById('${1:ComponentName}')
+);
+]]></content>
+  <tabTrigger>r:ren</tabTrigger>
+  <scope>source.js.jsx</scope>
+</snippet>

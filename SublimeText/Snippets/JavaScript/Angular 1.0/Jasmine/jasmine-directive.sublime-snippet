@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+'use strict';
+
+describe(`Directive: ${1:directiveName}`, function() {
+  let element;
+  let \$scope;
+
+  beforeEach(module(`${2:app}`));
+
+  beforeEach(inject(['\$compile', '\$rootScope', function(\$compile, \$rootScope) {
+    \$scope = \$rootScope;
+    element = angular.element(`<${1:div}>${3:\{\{ 1 + 2 \}\}}</${1:div}>`);
+    \$compile(element)(\$scope);
+    \$scope.\$digest();
+  }]));
+
+  it('should be simple', function() {
+    expect(element.html()).toBe(`${4:3}`);
+  })
+});
+${0:}
+]]></content>
+  <tabTrigger>ngtest:dir</tabTrigger>
+  <scope>source.javascript, source.js</scope>
+</snippet>

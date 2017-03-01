@@ -1,0 +1,7 @@
+<snippet>
+  <content><![CDATA[
+@ko${1:propName} = ko.observableArray ${2:[]}
+]]></content>
+  <tabTrigger>kooa</tabTrigger>
+  <scope>source.coffee</scope>
+</snippet>

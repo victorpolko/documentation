@@ -1,6 +1,7 @@
 <snippet>
 	<content><![CDATA[
-<%= link_to '${1:Link Name}', ${2:${3:somewhere}_path}${4:, class: '${5:btn btn-primary}'} %>
+= link_to '${1:Link Name}', ${2:${3:somewhere}_path}
 ]]></content>
 	<tabTrigger>lin</tabTrigger>
+  <scope>text.slim</scope>
 </snippet>

@@ -1,8 +1,0 @@
-<snippet>
-	<content><![CDATA[
-${1:console.log('${2:AAAAAAAAAAAAAA}');}
-${3:console.log(${4:this});}
-]]></content>
-	<tabTrigger>con</tabTrigger>
-	<!-- <scope>source.python</scope> -->
-</snippet>

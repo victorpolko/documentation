@@ -1,7 +1,7 @@
 <snippet>
   <content><![CDATA[
-console.warn(${1:});
+describe('${1:smth}', function() {${0:}});
 ]]></content>
-  <tabTrigger>warn</tabTrigger>
+  <tabTrigger>desc</tabTrigger>
   <scope>source.javascript, source.js</scope>
 </snippet>

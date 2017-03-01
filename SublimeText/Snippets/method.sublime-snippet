@@ -1,9 +1,0 @@
-<snippet>
-	<content><![CDATA[
-this.${1:methodName}	=	function(${2:args})	{
-	${3://methodBody}
-};
-]]></content>
-	<tabTrigger>meth</tabTrigger>
-	<!-- <scope>source.python</scope> -->
-</snippet>

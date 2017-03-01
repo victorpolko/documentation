@@ -1,8 +1,0 @@
-<snippet>
-  <content><![CDATA[
-ng-app="${1:moduleName}"
-]]></content>
-  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>ngapp</tabTrigger>
-  <scope>text.html, text.slim</scope>
-</snippet>

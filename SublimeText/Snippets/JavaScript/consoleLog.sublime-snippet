@@ -1,9 +1,7 @@
 <snippet>
   <content><![CDATA[
-${1:console.log('${2:AAAAAAAAAAAAAA}');}
-${3:console.log(${4:this});}
-$0
+console.log(${1:});
 ]]></content>
-  <tabTrigger>con</tabTrigger>
-  <scope>source.javascript, source.coffee</scope>
+  <tabTrigger>log</tabTrigger>
+  <scope>source.javascript, source.js</scope>
 </snippet>

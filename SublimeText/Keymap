@@ -61,5 +61,8 @@
 	{ "keys": ["ctrl+shift+r"], "command": "goto_symbol_in_project" },
 
 	{ "keys": ["ctrl+keypad_enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"} },
-	{ "keys": ["ctrl+shift+keypad_enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"} }
+	{ "keys": ["ctrl+shift+keypad_enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"} },
+
+	{ "keys": ["alt+backspace"], "command": "run_macro_file", "args": {"file": "Packages/User/delete_forwards.sublime-macro"} },
+	{ "keys": ["alt+delete"], "command": "run_macro_file", "args": {"file": "Packages/User/delete_backwards.sublime-macro"} }
 ]

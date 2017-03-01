@@ -1,0 +1,13 @@
+<snippet>
+  <content><![CDATA[
+${1:angular.module('${2:moduleName}')}
+
+.directive('${3:directiveName}', function() {
+  return {
+    ${0:}
+  };
+})
+]]></content>
+  <tabTrigger>ng:dir</tabTrigger>
+  <scope>source.javascript, source.js</scope>
+</snippet>

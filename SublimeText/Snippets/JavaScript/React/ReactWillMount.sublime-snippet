@@ -1,0 +1,9 @@
+<snippet>
+  <content><![CDATA[
+componentWillMount: function() {
+  ${1:}
+}
+]]></content>
+  <tabTrigger>r:wm</tabTrigger>
+  <scope>source.js.jsx</scope>
+</snippet>

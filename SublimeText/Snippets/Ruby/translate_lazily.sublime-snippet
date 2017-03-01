@@ -1,0 +1,6 @@
+<snippet>
+  <content><![CDATA[
+t('.${1:translation}')
+]]></content>
+  <tabTrigger>tl</tabTrigger>
+</snippet>

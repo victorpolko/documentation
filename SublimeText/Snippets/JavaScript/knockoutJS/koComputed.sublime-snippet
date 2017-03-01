@@ -1,0 +1,8 @@
+<snippet>
+  <content><![CDATA[
+@ko${1:propName} = ko.computed =>
+  ${0:# logics}
+]]></content>
+  <tabTrigger>koc, kocomp</tabTrigger>
+  <scope>source.coffee</scope>
+</snippet>

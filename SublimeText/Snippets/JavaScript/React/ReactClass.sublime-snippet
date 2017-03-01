@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+export default React.createClass({
+  ${1:getInitialState: function() \{
+    return \{
+      ${2:}
+    \};
+  \},
+
+  }render: function() {
+    return (
+      ${3:}
+    );
+  }
+})
+]]></content>
+  <tabTrigger>r:cla</tabTrigger>
+  <scope>source.js.jsx</scope>
+</snippet>

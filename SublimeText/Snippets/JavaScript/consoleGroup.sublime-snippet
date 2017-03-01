@@ -1,0 +1,9 @@
+<snippet>con
+  <content><![CDATA[
+console.groupCollapsed "${1:Group Name}"
+console.warn ${2:'messages'}
+console.groupEnd()
+]]></content>
+  <tabTrigger>cong</tabTrigger>
+  <scope>source.coffee</scope>
+</snippet>

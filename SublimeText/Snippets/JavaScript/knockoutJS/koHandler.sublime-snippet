@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+ko.bindingHandlers.${1:bindingName} =
+  init: (element, koValueAccessor, allBindings) ->
+    ${2:# \$(element).toggle()}
+
+  update: (element, koValueAccessor, allBindings) ->
+    ${3:# \$(element).toggle()}
+]]></content>
+  <tabTrigger>koh, kob</tabTrigger>
+  <scope>source.coffee</scope>
+</snippet>

@@ -1,9 +1,0 @@
-<snippet>
-	<content><![CDATA[
-function	${1:className}(${2:args})	{
-	${3:${4:this.args	=	args;}}
-}
-]]></content>
-	<tabTrigger>cl</tabTrigger>
-	<!-- <scope>source.python</scope> -->
-</snippet>

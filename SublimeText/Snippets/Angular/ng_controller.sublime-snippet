@@ -1,8 +1,0 @@
-<snippet>
-  <content><![CDATA[
-ng-controller="${1:ControllerCtrl}${2: as ${3:controller}}"
-]]></content>
-  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-  <tabTrigger>ngcon</tabTrigger>
-  <scope>text.html, text.slim</scope>
-</snippet>
