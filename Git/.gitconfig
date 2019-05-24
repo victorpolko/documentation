@@ -2,35 +2,65 @@
 # Any of these options may be redefined on the base of each git repository in
 #   repo_folder/.git/config
 
-# Automatically make line endings CRLF-like
 [core]
-  autocrlf = true
+  autocrlf = input
+  excludesfile = /Users/vpolko/.gitignore_global
+  editor = nano
 
-[push]
-  default = matching
-
-# This block defines how commits will be authored
 [user]
-  name = Victor Polko\n\n\n\n\n
-  email = victor.polko@mkechinov.ru
+  name = Victor Polkó
+  email = victorpolko@gmail.com
 
-# Attach colored output
 [color]
   ui = true
   diff = true
+[color "branch"]
+  remote = yellow
+[color "status"]
+  added = green bold
+  changed = yellow italic
+  untracked = red italic
 
-# Define aliases
+[advice]
+  statusHints = false
+
+[push]
+  default = current
+
+[commit]
+  template = /Users/vpolko/.stCommitMsg
+
+[gui]
+  recentrepo = /Users/vpolko/Documents/projects/DataArt/ArtBinder/xylor
+
 [alias]
   st = status
+  s  = status
+  l  = status
+  ll = status
   cm = commit -m
   co = checkout
   di = diff
   br = branch
-
+  b  = branch
   lg = log --oneline
   lgg = log --graph
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 
-  # I use stash for commits to be sequental and to avoid merges
-  refresh = !git add --all && echo \"\t +++++ Added all files to commit\" && git stash clear && echo \"\t ---- Cleared stash up\" && git stash save && echo \"\t ---- Stashed changes\" && git pull && echo \"\t +++++ Pulled from origin\" && git stash apply && echo \"\t +++++ Applied stashed changes\" && git reset . && echo \"\t ---- Removed all files from git-stage\"
+  temp = !git add --all && echo \"\t +++++ Added all files to commit\" && git commit -m 'temp' && echo \"\t Created a commit called 'temp'\"
+  untemp = !git reset HEAD~1
 
   supermerge = !git merge --no-ff -e $1
+
+  cod = !git checkout develop
+  pod = !git pull origin develop
+  cof = !git checkout nylas-integration-poc
+  pof = !git pull origin nylas-integration-poc
+
+  stam = !git stash save
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true

@@ -1,0 +1,48 @@
+# All files in /app/assets are compiled into /public/assets
+# So all files in public are available from the scratch amd the root path is the path to /public:
+documents/doc1.doc    -> public/documents/doc1.doc
+assets/doc2.doc       -> public/assets/doc2.doc
+
+# Everything that is not stored in GIT when deploying but has to be deployed on the server should be added to shared_children in deploy.rb
+..
+set :shared_children,   %w(public/system public/files public/uploads log tmp/pids tmp/sockets)
+..
+# Those are files that are generated on-the-go
+
+# We use nginx, sort of a filter between browser and main server (Unicorn). It forbids any unauthorised requests to main server for DDOS prevention.
+# On server all configs for sites are collected in /etc/nginx/sites-available
+# Bad system admins collect them in /etc/nginx/nginx.conf, without sharing them between separate sites, which is no good
+# A config file usually contains some directives of which files will be available from the browser
+..
+location ~ ^/(assets|images|javascripts|stylesheets|system|phone-codes)/  {
+        root /home/rails/bank-dengi.ru/current/public;
+        expires max;
+        break;
+      }
+..
+# So when you add any new folder to your public folder you need to change this config file so that your new folder is included
+..
+location ~ ^/(assets|images|javascripts|stylesheets|system|phone-codes|docs)/  {
+        root /home/rails/bank-dengi.ru/current/public;
+        expires max;
+        break;
+      }
+..
+
+
+# GZip
+# GZ-assets are supplied by Assets Pipeline by default, it is very strange that we don't use them at all
+# In order for nginx to serve gz-assets, write this to config:
+server {
+    gzip on;
+  ...
+    location ~ ^/(assets)/  {
+        gzip_static on;
+        expires max;
+        add_header Cache-Control public;
+  }
+
+# Then don't forget to restart nginx with
+/etc/init.d/nginx configtest && /etc/init.d/nginx restart
+
+# And check that assets come small and unpack as big entities (Chrome Dev tools -> Network (content vs size))

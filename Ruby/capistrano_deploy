@@ -10,7 +10,6 @@
   bundle exec cap staging deploy:migrations && bundle exec cap staging deploy
 
 
-
 1. Setup capistrano for new project
   cap setup
 2. Run project

@@ -1,0 +1,16 @@
+01 brew
+02 rvm
+03 sublime + better coffee + bracket highlighter + emmet + sass + git + git gutter + advanced new file + all autocomplete + sidebar enhancements
+04 dropbox
+05 chrome
+06 firefox
+07 skype
+08 spectacle
+09 alfred
+10 n + coffeescript
+11 postgresql
+12 elasticsearch (/usr/local/opt/elasticsearch/libexec/config/jvm.options)
+13 sqlite
+14 redis
+15 git + gitg ! bash-completions
+16 defaults write com.apple.dock no-bouncing -bool TRUE;killall Dock

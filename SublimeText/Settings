@@ -26,13 +26,15 @@
 	],
 	"bold_folder_labels": true,
 	"caret_style": "solid",
-	"color_scheme": "Packages/Chosen Ones/Stereokai.tmTheme",
+	"close_windows_when_empty": false,
+	"color_scheme": "Packages/User/Chosen Ones/Stereokai.tmTheme",
 	"disable_tab_abbreviations": true,
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": false,
 	"fallback_encoding": "Cyrillic (Windows 1251)",
-	"font_size": 10,
+	"find_selected_text": true,
+	"font_size": 12,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"hot_exit": true,
@@ -55,6 +57,8 @@
 		"*.scssc",
 		"tmp/*"
 	],
+	"mini_diff": false,
+	"move_to_limit_on_up_down": false,
 	"overlay_scroll_bars": "enabled",
 	"remember_full_screen": true,
 	"rulers":
@@ -64,8 +68,10 @@
 		90
 	],
 	"save_on_focus_lost": true,
+	"scroll_past_end": true,
 	"scroll_speed": 0,
 	"show_definitions": false,
+	"show_full_path": true,
 	"show_tab_close_buttons": false,
 	"soda_classic_tabs": true,
 	"soda_folder_icons": false,
@@ -74,5 +80,6 @@
 	"translate_tabs_to_spaces": true,
 	"trim_automatic_white_space": false,
 	"trim_trailing_white_space_on_save": true,
+	"use_simple_full_screen": true,
 	"word_wrap": true
 }

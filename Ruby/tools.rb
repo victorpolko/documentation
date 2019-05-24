@@ -1,19 +1,19 @@
-1. To insert a Ruby-code into HTML (Ruby-injection)
+# 1. To insert a Ruby-code into HTML (Ruby-injection)
   #<% [someActions] %>
   #<%= [someActionsToPrint] %>
 
-2. To check all routes of project
+# 2. To check all routes of project
   $ rake routes
 
-4. image_tag Helper creates an <img> tag with some parameters
+# 4. image_tag Helper creates an <img> tag with some parameters
   # <%= image_tag [urlOfImage] %>
 
-4. link_to Helper creates an <a> tag with some parameters
+# 4. link_to Helper creates an <a> tag with some parameters
   # It is possible to generate a [linkRef] with Ruby instruments
   # This is good to check the code for errors: when some action cannot be found we'll see it in the log
   # <%= link_to '[LinkName]', '[linkRef]' %>
 
-5. Ruby allows to work with project at the console mode, in which it is possible to manage all defined actions, controllers, create records, update database etc.
+# 5. Ruby allows to work with project at the console mode, in which it is possible to manage all defined actions, controllers, create records, update database etc.
 # To run the console
   $ rails c
 # To see all DB
@@ -31,19 +31,19 @@
 # To find a record by id
   > Category.find(2)
 
-6. Edit something
+# 6. Edit something
   edit_category_path(id: category.id)
   # This is because in routes /categories/:id/edit(.:format) there is a parameter for this
 
-7. Delete something
+# 7. Delete something
   link_to 'Delete something', @something, method: :delete, confirm: 'Sure?'
 
-8. Symbol
+# 8. Symbol
   # Anything starting with ':' is called a symbol. It is always only 1 byte length in RAM
   :minimum => 3 # is the same as (new syntax)
   minimum: 3
 
-9. Closure
+# 9. Closure
   # Closure is the possibility to accept arguments from the same scope level as its caller is
   # ONLY Blocks maintain Closure
   tell = "woof woof!"
@@ -68,7 +68,7 @@
   p = Puppy.new                   # From now on this is class Puppy
   p.say                           # => "woof woof!"
 
-10. Block
+# 10. Block
   # Block is something within {} or do-end pair
   # It is a bunch of code which can be passed to a method
   class Array
@@ -86,7 +86,7 @@
   # Variable 'c' was sfound within this block, placeholder 'b' was instead 'a'
   # Which is so terrifying for our brain!!!
 
-11. Lambdas
+# 11. Lambdas
   # The only way in Ruby to pass a function as argument is to pass it as lambda
   # lambda is alias for anonymous function or Proc, which is able to be called afterwards
   # it is the way to write a block to a variable WITH CLOSURE
@@ -134,7 +134,7 @@
   p (1..5).to_a.map2{|b| b**2 + c }   # => [4, 7, 12, 19, 28]
   p (1..5).to_a.map2                  # => "no block"
 
-12. Proc
+# 12. Proc
   # Proc is a block (see 10) that can be called more than once
   # Proc also has object properties while block does not
   # Proc is almost the same as lambda, but has two differences:
@@ -156,7 +156,7 @@
 
   puts batman_ironman_lambda    # => Iron Man will win!
 
-13. Open GEM
+# 13. Open GEM
   # It is often necessary to find out how a function works without going to Github
   bundle open [GEMname]
   # This will use standard text editor to open this gem

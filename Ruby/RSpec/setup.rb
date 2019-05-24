@@ -1,4 +1,4 @@
-1. Add dependencies to the Gemfile
+# 1. Add dependencies to the Gemfile
   group :development, :test do
     gem "rspec-rails", "~> 2.14.0"
     gem "factory_girl_rails", "~> 4.2.1"
@@ -12,7 +12,7 @@
     gem "selenium-webdriver", "~> 2.35.1"
   end
 
-2. Configure database (database.yml)
+# 2. Configure database (database.yml)
   test:
     adapter: postgresql
     encoding: unicode
@@ -21,13 +21,13 @@
     username:
     password:
 
-3. Configure RSpec
+# 3. Configure RSpec
   $ bundle exec rails generate rspec:install
 
   Output to look better (.rspec)
     --format documentation
 
-4. Configure Spec Generators (application.rb)
+# 4. Configure Spec Generators (application.rb)
   class Application < Rails::Application
     ..
     config.generators do |g|
@@ -43,10 +43,10 @@
     ..
   end
 
-5. Clone development database schema to test database
+# 5. Clone development database schema to test database
   $ rake db:test:clone
 
-6. Run tests
+# 6. Run tests
   $ rspec
   or
   $ bundle exec rspec

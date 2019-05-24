@@ -1,6 +1,6 @@
 # Ruby uses Model-View-Controller architecture with these types automatical generation
 
-1. Create a controller
+# 1. Create a controller
 # To create a new controller
 
     $ cd [pathToProject]
@@ -8,17 +8,17 @@
 
 # From now on there is a [controllerName]_controller in /[pathToProject]/app/controllers/
 
-2. Define an action
+# 2. Define an action
 # To define a new action within it
     def [actionName]
         [someActions]
     end
 
-3. Create a view
+# 3. Create a view
 # Then it is necessary to create a view in /[pathToProject]/app/views/[controllerName]/ with name=[actionName] and any content
 # This content is included within <body> tag by default, or instead of <%= yield %> in layout-file. (application.html.erb by default)
 
-4. Add a route to this view
+# 4. Add a route to this view
 # It is necessary to write a route to view in /[pathToProject]/config/routes.rb
 # The main page is defined with
     root '[controllerName]#[actionName]'
@@ -30,13 +30,13 @@
     get '[pathInBrowser]' => '[controllerName]#[actionName]'
 # From now on we have a path like http://0.0.0:3000/pathInBrowser for this controller/action pair
 
-5. Model is a template for database records. To create a model
+# 5. Model is a template for database records. To create a model
     $ rails g Category  #   in singular!!
 # After that two important files appear in project:
     # /models/category.rb/
     # /db/migrate/create_categories
 
-6. Migrations are manually pre-created changes in database.
+# 6. Migrations are manually pre-created changes in database.
   # All migrations are in /app/db/migrate folder
     class CreateMembers < ActiveRecord::Migration
       def change
@@ -68,7 +68,7 @@
   # Migration may be rolled back
     $ rake db:rollback
 
-7. Controller for newly created model should be generated
+# 7. Controller for newly created model should be generated
     $ rails g controller Categories #   in plural!!
 
   # Actions inside this controller will manage our model
@@ -128,7 +128,7 @@
     #                   PUT     /categories/:id(.:format)       categories#update
     #                   DELETE  /categories/:id(.:format)       categories#destroy
 
-8. Scaffold is something we can call 'template'
+# 8. Scaffold is something we can call 'template'
     $ rails g controller Category name:string description:text price:float renewed_at:datetime  #   in singular!!
 
   # This magic will generate
@@ -141,7 +141,7 @@
     7)  JSON-builders
     8)  A stylesheet scaffolds.css.scss, which should be deleted when using Bootstrap
 
-9. Associations
+# 9. Associations
   # Associations create bindings between different models
   # it is usable e.g. when a User model can have many Comment models, here a Comment model can belong to only one User model
   # Such associations are defined within Model itself with keywords has_many and belongs_to
