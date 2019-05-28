@@ -1,7 +1,3 @@
-# ~/.gitconfig file
-# Any of these options may be redefined on the base of each git repository in
-#   repo_folder/.git/config
-
 [core]
   autocrlf = input
   excludesfile = /Users/vpolko/.gitignore_global
@@ -20,6 +16,11 @@
   added = green bold
   changed = yellow italic
   untracked = red italic
+
+[color "diff"]
+  old = red bold
+  new = green bold
+  context = white bold dim
 
 [advice]
   statusHints = false
