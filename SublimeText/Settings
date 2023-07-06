@@ -1,85 +1,85 @@
+// Settings in here override those in "Default/Preferences.sublime-settings",
+// and are overridden in turn by syntax-specific settings.
 {
-	"added_words":
-	[
-		"checkbox",
-		"foreach"
-	],
-	"always_show_minimap_viewport": true,
-	"animation_enabled": false,
-	"auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin",
-	"binary_file_patterns":
-	[
-		"*.jpg",
-		"*.jpeg",
-		"*.png",
-		"*.gif",
-		"*.ttf",
-		"*.tga",
-		"*.dds",
-		"*.ico",
-		"*.eot",
-		"*.pdf",
-		"*.swf",
-		"*.jar",
-		"*.zip",
-		"*.scssc"
-	],
-	"bold_folder_labels": true,
-	"caret_style": "solid",
-	"close_windows_when_empty": false,
-	"color_scheme": "Packages/User/Chosen Ones/Stereokai.tmTheme",
-	"disable_tab_abbreviations": true,
-	"draw_minimap_border": true,
-	"ensure_newline_at_eof_on_save": true,
-	"fade_fold_buttons": false,
-	"fallback_encoding": "Cyrillic (Windows 1251)",
-	"find_selected_text": true,
-	"font_size": 12,
-	"highlight_line": true,
-	"highlight_modified_tabs": true,
-	"hot_exit": true,
-	"ignored_packages":
-	[
-		"AdvancedNewFile",
-		"Vintage"
-	],
-	"ignored_words":
-	[
-		"ko"
-	],
-	"indent_guide_options":
-	[
-		"draw_active"
-	],
-	"index_exclude_patterns":
-	[
-		"*.log",
-		"*.scssc",
-		"tmp/*"
-	],
-	"mini_diff": false,
-	"move_to_limit_on_up_down": false,
-	"overlay_scroll_bars": "enabled",
-	"remember_full_screen": true,
-	"rulers":
-	[
-		0,
-		2,
-		90
-	],
-	"save_on_focus_lost": true,
-	"scroll_past_end": true,
-	"scroll_speed": 0,
-	"show_definitions": false,
-	"show_full_path": true,
-	"show_tab_close_buttons": false,
-	"soda_classic_tabs": true,
-	"soda_folder_icons": false,
-	"tab_size": 2,
-	"theme": "Soda Dark 3.sublime-theme",
-	"translate_tabs_to_spaces": true,
-	"trim_automatic_white_space": false,
-	"trim_trailing_white_space_on_save": true,
-	"use_simple_full_screen": true,
-	"word_wrap": true
+  // Font
+    "font_size": 15,
+    "font_face": "JetBrainsMono-Light",
+    // "font_face": "FiraCode-Regular",
+    // "font_face": "DejaVuSansMono",
+    // "font_face": "SourceCodePro-Regular",
+    // "font_face": "ProggyVector",
+    // "font_face": "ProggyCleanTT", "font_size": 21,
+
+  // Text, typing
+    "tab_size": 2,
+    "translate_tabs_to_spaces": true,
+    "ensure_newline_at_eof_on_save": true,
+    "trim_automatic_white_space": false,
+    "trim_trailing_white_space_on_save": "all",
+    "trim_only_modified_white_space": false,
+
+    "auto_complete": false,
+    "tab_completion": true,
+    "word_wrap": true,
+    "drag_text": false,
+    "caret_style": "phase",
+    "move_to_limit_on_up_down": false,
+    "fallback_encoding": "Cyrillic (Windows 1251)",
+
+  // Interface
+    "bold_folder_labels": true,
+    "overlay_scroll_bars": "enabled",
+    "fade_fold_buttons": false,
+
+    // Colors, theme
+      "color_scheme": "Packages/User/Chosen Ones/Stereokai.tmTheme",
+      "theme": "SoDaReloaded Dark.sublime-theme",
+      "soda_classic_tabs": true,
+      "soda_folder_icons": false,
+
+    // Rulers
+      "rulers": [0, 2, 90],
+      "ruler_style": "dotted",
+      "indent_guide_options": ["draw_active_single", "draw_normal"],
+
+    // Highlighting
+      "highlight_line": true,
+      "highlight_gutter": false,
+
+    // Animation
+      "animation_enabled": false,
+      "tree_animation_enabled": false,
+
+    // Minimap
+      "always_show_minimap_viewport": true,
+      "draw_minimap_border": true,
+
+    // Tab/Window title
+      "show_full_path": true,
+      "show_rel_path": true,
+
+    // Tabs
+      "highlight_modified_tabs": true,
+      "enable_tab_scrolling": false,
+      "show_tab_close_buttons": false,
+      "open_tabs_after_current": false,
+      "show_sidebar_button": false,
+
+    // Status bar
+      "show_definitions": false,
+      "show_line_column": "compact",
+      "show_encoding": true,
+
+  // Behaviour
+    "save_on_focus_lost": true,
+    "scroll_past_end": true,
+    "hot_exit": "always",
+    "remember_full_screen": true,
+    "find_selected_text": true,
+    "index_exclude_patterns": ["*.log", "*.scssc"],
+
+  ////////////////////////
+  // Deprecated/removed //
+  ////////////////////////
+  // "ignored_words": ["ko"]
 }
