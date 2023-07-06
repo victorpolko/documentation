@@ -1,68 +1,242 @@
 [
-	//focus groups
-	{ "keys": ["alt+keypad1"], "command": "select_by_index", "args": { "index": 0 } },
-	{ "keys": ["alt+keypad2"], "command": "select_by_index", "args": { "index": 1 } },
-	{ "keys": ["alt+keypad3"], "command": "select_by_index", "args": { "index": 2 } },
-	{ "keys": ["alt+keypad4"], "command": "select_by_index", "args": { "index": 3 } },
-	{ "keys": ["alt+keypad5"], "command": "select_by_index", "args": { "index": 4 } },
-	{ "keys": ["alt+keypad6"], "command": "select_by_index", "args": { "index": 5 } },
-	{ "keys": ["alt+keypad7"], "command": "select_by_index", "args": { "index": 6 } },
-	{ "keys": ["alt+keypad8"], "command": "select_by_index", "args": { "index": 7 } },
-	{ "keys": ["alt+keypad9"], "command": "select_by_index", "args": { "index": 8 } },
-	{ "keys": ["alt+keypad0"], "command": "select_by_index", "args": { "index": 9 } },
+  /////////////////////////
+  // Sublime Text 4, Mac //
+  /////////////////////////
 
-	{ "keys": ["alt+up"], "command": "focus_neighboring_group", "args": {"forward": false} },
-	{ "keys": ["alt+down"], "command": "focus_neighboring_group" },
-	{
-		"keys": ["ctrl+1"],
-		"command": "set_layout",
-		"args":
-		{
-			"cols": [0.0, 0.83, 1.0],
-			"rows": [0.0, 1.0],
-			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
-		}
-	},
+  // Shift+Cmd for swapping lines (default: Ctrl+Cmd, but I use those for Workspace switching)
+    { "keys": ["shift+ctrl+up"], "command": "swap_line_up" },
+    { "keys": ["shift+ctrl+down"], "command": "swap_line_down" },
 
-	{
-		"keys": ["ctrl+2"],
-		"command": "set_layout",
-		"args":
-		{
-			"cols": [0.0, 0.17, 1.0],
-			"rows": [0.0, 1.0],
-			"cells": [[0, 0, 1, 1], [1, 0, 2, 1]]
-		}
-	},
+  // Alt+Up/Down for moving focus
+    { "keys": ["alt+up"], "command": "focus_neighboring_group", "args": {"forward": false} },
+    { "keys": ["alt+down"], "command": "focus_neighboring_group" },
 
-	{
-		"keys": ["ctrl+3"],
-		"command": "set_layout",
-		"args":
-		{
-			"cols": [0.0, 0.17, 1.0],
-			"rows": [0.0, 0.2, 1.0],
-			"cells": [[0, 0, 1, 2], [1, 0, 2, 1], [1, 1, 2, 2]]
-		}
-	},
+  // Ctrl+Left/Right moves by whole words (default – Alt)
+    { "keys": ["ctrl+left"], "command": "move", "args": {"by": "words", "forward": false} },
+    { "keys": ["ctrl+right"], "command": "move", "args": {"by": "word_ends", "forward": true} },
+    { "keys": ["ctrl+shift+left"], "command": "move", "args": {"by": "words", "forward": false, "extend": true} },
+    { "keys": ["ctrl+shift+right"], "command": "move", "args": {"by": "word_ends", "forward": true, "extend": true} },
 
-	{
-		"keys": ["ctrl+4"],
-		"command": "set_layout",
-		"args":
-		{
-			"cols": [0.0, 0.17, 0.2, 1.0],
-			"rows": [0.0, 0.1, 1.0],
-			"cells": [[0, 0, 1, 2], [1, 0, 2, 2], [2, 0, 3, 1], [2, 1, 3, 2]]
-		}
-	},
+  // Alt moves by subwords (default - Ctrl)
+    { "keys": ["alt+left"], "command": "move", "args": {"by": "subwords", "forward": false} },
+    { "keys": ["alt+right"], "command": "move", "args": {"by": "subword_ends", "forward": true} },
+    { "keys": ["alt+shift+left"], "command": "move", "args": {"by": "subwords", "forward": false, "extend": true} },
+    { "keys": ["alt+shift+right"], "command": "move", "args": {"by": "subword_ends", "forward": true, "extend": true} },
 
-	{ "keys": ["shift+alt+tab"], "command": "reindent" },
-	{ "keys": ["ctrl+shift+r"], "command": "goto_symbol_in_project" },
+  // Delete/backspace by sub/words accordingly
+    { "keys": ["alt+backspace"], "command": "delete_word", "args": { "forward": false, "sub_words": true } },
+    { "keys": ["ctrl+backspace"], "command": "delete_word", "args": { "forward": false, "sub_words": false } },
 
-	{ "keys": ["ctrl+keypad_enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"} },
-	{ "keys": ["ctrl+shift+keypad_enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"} },
+  // Overlays
+    { "keys": ["super+o"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+    { "keys": ["super+shift+o"], "command": "show_overlay", "args": {"overlay": "command_palette"} },
+    { "keys": ["super+g"], "command": "show_overlay", "args": {"overlay": "goto", "text": ":"} },
 
-	{ "keys": ["alt+backspace"], "command": "run_macro_file", "args": {"file": "Packages/User/delete_forwards.sublime-macro"} },
-	{ "keys": ["alt+delete"], "command": "run_macro_file", "args": {"file": "Packages/User/delete_backwards.sublime-macro"} }
+  // Sidebar
+    { "keys": ["super+option+i"], "command": "toggle_side_bar" }, // Derived from Chrome dev tools
+    { "keys": ["super+option+l"], "command": "reveal_in_side_bar" },
+
+  // Scroll lines
+    { "keys": ["ctrl+up"], "command": "scroll_lines", "args": {"amount": 1.0} },
+    { "keys": ["ctrl+down"], "command": "scroll_lines", "args": {"amount": -1.0} },
+    { "keys": ["ctrl+alt+up"], "command": "scroll_lines", "args": {"amount": 10.0} },
+    { "keys": ["ctrl+alt+down"], "command": "scroll_lines", "args": {"amount": -10.0} },
+
+  // Multicursor system
+    { "keys": ["f3"], "command": "find_next" },
+    { "keys": ["shift+f3"], "command": "find_prev" },
+    { "keys": ["super+f3"], "command": "find_all_under" },
+
+  // Sorting to F9
+    { "keys": ["f9"], "command": "sort_lines", "args": {"case_sensitive": false} },
+    { "keys": ["super+f9"], "command": "sort_lines", "args": {"case_sensitive": true} },
+
+  // Alfred conflicts with autocomplete
+    { "keys": ["option+space"], "command": "auto_complete" }, // also for not adding non-breaking space
+    { "keys": ["option+space"], "command": "replace_completion_with_auto_complete", "context":
+      [
+        { "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },
+        { "key": "auto_complete_visible", "operator": "equal", "operand": false },
+        { "key": "setting.tab_completion", "operator": "equal", "operand": true }
+      ]
+    },
+
+  // Small things
+    { "keys": ["super+j"], "command": "join_lines" },
+    { "keys": ["super+t"], "command": "transpose" },
+    { "keys": ["ctrl+e"], "command": "emmet_expand_abbreviation" },
+    { "keys": ["shift+option+tab"], "command": "reindent" },
+
+  // Unbind keys, actions
+    { "keys": ["ctrl+q"], "command": "noop" }, // toggle_record_macro
+    { "keys": ["ctrl+shift+q"], "command": "noop" }, // run_macro
+    { "keys": ["ctrl+g"], "command": "noop" }, // goto, text: ':'
+    { "keys": ["super+h"], "command": "noop" }, // Mac's hide window
+    { "keys": ["ctrl+d"], "command": "noop" }, // deletes one symbol
+
+  // Ctrl+1-4 for layouts (+ focus)
+    {
+      "keys": ["ctrl+1"],
+      "command": "chain",
+      "args": {
+        "commands": [
+          [
+            "set_layout",
+            {
+              "cols": [0.0, 0.970, 0.980, 0.990, 1.0],
+              "rows": [0.0, 1.0],
+              "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [3, 0, 4, 1]]
+            }
+          ],
+          ["focus_group", { "group": 0 }]
+        ]
+      }
+    },
+
+    {
+      "keys": ["ctrl+2"],
+      "command": "chain",
+      "args": {
+        "commands": [
+          [
+            "set_layout",
+            {
+              "cols": [0.0, 0.010, 0.980, 0.990, 1.0],
+              "rows": [0.0, 1.0],
+              "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [3, 0, 4, 1]]
+            }
+          ],
+          ["focus_group", { "group": 1 }]
+        ]
+      }
+    },
+
+    {
+      "keys": ["ctrl+3"],
+      "command": "chain",
+      "args": {
+        "commands": [
+          [
+            "set_layout",
+            {
+              "cols": [0.0, 0.010, 0.020, 0.980, 1.0],
+              "rows": [0.0, 1.0],
+              "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [3, 0, 4, 1]]
+            }
+          ],
+          ["focus_group", { "group": 2 }]
+        ]
+      }
+    },
+
+    {
+      "keys": ["ctrl+4"],
+      "command": "chain",
+      "args": {
+        "commands": [
+          [
+            "set_layout",
+            {
+              "cols": [0.0, 0.010, 0.020, 0.030, 1.0],
+              "rows": [0.0, 1.0],
+              "cells": [[0, 0, 1, 1], [1, 0, 2, 1], [2, 0, 3, 1], [3, 0, 4, 1]]
+            }
+          ],
+          ["focus_group", { "group": 3 }]
+        ]
+      }
+    }
+
+  ///////////////////////////////////////////////////////
+  // Outdated section – everything works without these //
+  ///////////////////////////////////////////////////////
+  // { "keys": ["super+shift+r"], "command": "goto_symbol_in_project" }, // works without this
+  //
+  // { "keys": ["ctrl+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"} },
+  // { "keys": ["ctrl+shift+enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"} },
+  //
+  // { "keys": ["ctrl+keypad_enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line.sublime-macro"} },
+  // { "keys": ["ctrl+shift+keypad_enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Add Line Before.sublime-macro"} },
+
+  //////////////////////////////
+  // Not for Mac, not for ST4 //
+  //////////////////////////////
+  //
+  // focus groups, don't work with mac (¡™£¢∞§¶•ªº)
+  // { "keys": ["alt+keypad1"], "command": "select_by_index", "args": { "index": 0 } },
+  // { "keys": ["alt+keypad2"], "command": "select_by_index", "args": { "index": 1 } },
+  // { "keys": ["alt+keypad3"], "command": "select_by_index", "args": { "index": 2 } },
+  // { "keys": ["alt+keypad4"], "command": "select_by_index", "args": { "index": 3 } },
+  // { "keys": ["alt+keypad5"], "command": "select_by_index", "args": { "index": 4 } },
+  // { "keys": ["alt+keypad6"], "command": "select_by_index", "args": { "index": 5 } },
+  // { "keys": ["alt+keypad7"], "command": "select_by_index", "args": { "index": 6 } },
+  // { "keys": ["alt+keypad8"], "command": "select_by_index", "args": { "index": 7 } },
+  // { "keys": ["alt+keypad9"], "command": "select_by_index", "args": { "index": 8 } },
+  // { "keys": ["alt+keypad0"], "command": "select_by_index", "args": { "index": 9 } },
+  //
+  // { "keys": ["shift+delete"], "command": "cut" }, // Used in Linux with old keyboard (Shift+Del, Shift+Ins)
+  //
+  // Delete/backspace by sub/words accordingly (Mac doesn't have Delete, only Backspace)
+  // { "keys": ["alt+delete"], "command": "delete_word", "args": { "forward": true, "sub_words": true } },
+  // { "keys": ["ctrl+delete"], "command": "delete_word", "args": { "forward": true, "sub_words": false } },
+  //
+  // Remap CMD -> Ctrl
+  // { "keys": ["ctrl+s"], "command": "save" },
+  // { "keys": ["ctrl+shift+n"], "command": "new_window" },
+  // { "keys": ["ctrl+shift+w"], "command": "close_window" },
+  // { "keys": ["ctrl+o"], "command": "prompt_open" },
+  // { "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
+  // { "keys": ["ctrl+alt+up"], "command": "switch_file", "args": {"extensions": ["cpp", "cxx", "cc", "c", "hpp", "hxx", "hh", "h", "ipp", "inl", "m", "mm"]} },
+  // { "keys": ["ctrl+n"], "command": "new_file" },
+  // { "keys": ["ctrl+shift+s"], "command": "prompt_save_as" },
+  // { "keys": ["ctrl+alt+s"], "command": "save_all" },
+  // { "keys": ["ctrl+w"], "command": "close" },
+  // { "keys": ["ctrl+k", "ctrl+b"], "command": "toggle_side_bar" },
+  // { "keys": ["ctrl+z"], "command": "undo" },
+  // { "keys": ["ctrl+shift+z"], "command": "redo" },
+  // { "keys": ["ctrl+y"], "command": "redo_or_repeat" },
+  // { "keys": ["ctrl+u"], "command": "soft_undo" },
+  // { "keys": ["ctrl+l"], "command": "expand_selection", "args": {"to": "line"} },
+  // { "keys": ["ctrl+shift+u"], "command": "soft_redo" },
+  // { "keys": ["ctrl+x"], "command": "cut" },
+  // { "keys": ["ctrl+c"], "command": "copy" },
+  // { "keys": ["ctrl+v"], "command": "paste" },
+  // { "keys": ["ctrl+shift+v"], "command": "paste_and_indent" },
+  // { "keys": ["ctrl+k", "ctrl+v"], "command": "paste_from_history" },
+  // { "keys": ["ctrl+alt+v"], "command": "paste_from_history" },
+  // { "keys": ["ctrl+p"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+  // { "keys": ["ctrl+shift+p"], "command": "show_overlay", "args": {"overlay": "command_palette"} },
+  // { "keys": ["ctrl+r"], "command": "show_overlay", "args": {"overlay": "goto", "text": "@"} },
+  // { "keys": ["ctrl+shift+d"], "command": "duplicate_line" },
+  // { "keys": ["ctrl+f2"], "command": "toggle_bookmark" },
+  // { "keys": ["ctrl+shift+f2"], "command": "clear_bookmarks" },
+  // { "keys": ["ctrl+f"], "command": "show_panel", "args": {"panel": "find", "reverse": false} },
+  // { "keys": ["ctrl+shift+f"], "command": "show_panel", "args": {"panel": "find_in_files"} },
+  // { "keys": ["ctrl+]"], "command": "indent" },
+  // { "keys": ["ctrl+["], "command": "unindent" },
+  // { "keys": ["ctrl+a"], "command": "select_all" },
+  // { "keys": ["ctrl+shift+l"], "command": "split_selection_into_lines" },
+  // { "keys": ["ctrl+forward_slash"], "command": "toggle_comment", "args": { "block": false } },
+  // { "keys": ["ctrl+alt+forward_slash"], "command": "toggle_comment", "args": { "block": true } },
+  // { "keys": ["ctrl+j"], "command": "join_lines" },
+  // { "keys": ["ctrl+k", "ctrl+u"], "command": "upper_case" },
+  // { "keys": ["ctrl+k", "ctrl+l"], "command": "lower_case" },
+  //
+  // Home/End remap
+  // { "keys": ["home"], "command": "move_to", "args": {"to": "bol"} },
+  // { "keys": ["end"], "command": "move_to", "args": {"to": "eol"} },
+  // { "keys": ["shift+end"], "command": "move_to", "args": {"to": "eol", "extend": true} },
+  // { "keys": ["shift+home"], "command": "move_to", "args": {"to": "bol", "extend": true } },
+  // { "keys": ["ctrl+home"], "command": "move_to", "args": {"to": "bof"} },
+  // { "keys": ["ctrl+end"], "command": "move_to", "args": {"to": "eof"} },
+  // { "keys": ["ctrl+shift+end"], "command": "move_to", "args": {"to": "eof", "extend": true} },
+  // { "keys": ["ctrl+shift+home"], "command": "move_to", "args": {"to": "bof", "extend": true } },
+  //
+  // Remap Exit to Ctrl+Q
+  // ST4 can't do that
+  // { "keys": ["ctrl+q"], "command": "exit" },
+  // { "keys": ["super+q"], "command": "noop" },
+  //
+  // Sorting to F9
+  // { "keys": ["ctrl+f9"], "command": "sort_lines", "args": {"case_sensitive": true} },
 ]
