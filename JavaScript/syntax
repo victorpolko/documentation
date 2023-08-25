@@ -115,7 +115,7 @@
   };
 
 12.Default behavior
-    // Default behavior of the browser may be omitted with this:
-    document.getElementById('uniqueId').addEventListener('click', function(event)   {
-      event.preventDefault ? event.preventDefault() : (event.returnValue = false); // For cross-browser applications
-    };
+  // Default behavior of the browser may be omitted with this:
+  document.getElementById('uniqueId').addEventListener('click', function(event)   {
+    event.preventDefault ? event.preventDefault() : (event.returnValue = false); // For cross-browser applications
+  };
