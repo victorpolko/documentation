@@ -1,0 +1,108 @@
+<!-- REPL: https://developer.mozilla.org/en-US/play -->
+<!-- Add CSS: `html, body, svg { height: 100%; }` -->
+
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-width="0" stroke-linecap="round">
+    <path id="line-nw-se" d="M10,10 L90,90" stroke="#000" stroke-width="20"></path>
+    <path id="line-ne-sw" d="M90,10 L10,90" stroke="#000" stroke-width="20"></path>
+
+    <!-- overlay circle to make sure the animation is not reset on each path's hover -->
+    <circle id="oval" stroke-width="1" fill="transparent" cx="50" cy="50" r="67"></circle>
+
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      dur=".2s"
+      begin="mouseover"
+      repeatCount="1"
+      values="0 50 50; 90 50 50"
+      keyTimes="0; 1"
+    />
+  </g>
+</svg>
+
+<!-- Hover animation with a delay -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g stroke-width="0" stroke-linecap="round">
+
+    <path id="line-nw-se" d="M10,10 L90,90" stroke="#000" stroke-width="20"></path>
+    <path id="line-ne-sw" d="M90,10 L10,90" stroke="#000" stroke-width="20"></path>
+
+    <!-- overlay circle to make sure the animation is not reset on each path's hover -->
+    <circle id="oval" stroke-width="1" fill="transparent" cx="50" cy="50" r="67"></circle>
+
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      dur="1s"
+      begin="mouseover"
+      end="mouseout"
+      repeatCount="1"
+      values="0 50 50; 0 50 50; 90 50 50"
+      keyTimes="0; 0.8; 1"
+    />
+  </g>
+</svg>
+
+
+<!-- Single 90 degrees rotate on hover -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g id="cross-icon" stroke-width="0">
+    <g id="cross-icon-group" stroke-width="0">
+      <path id="line-nw-se" d="M32,32 L68,68" stroke-width="9" stroke-linecap="round" stroke="#000"></path>
+      <path id="line-ne-sw" d="M32,68 L68,32" stroke-width="9" stroke-linecap="round" stroke="#000"></path>
+      <circle id="oval" stroke-width="5" stroke="#000" cx="50" cy="50" r="47.5" fill="transparent"></circle>
+    </g>
+
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      dur="0.2s"
+      repeatCount="1"
+      begin="mouseover"
+      values="0 50 50; 90 50 50"
+    />
+  </g>
+</svg>
+
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g id="cross-icon" stroke-width="0">
+    <g id="cross-icon-group" stroke-width="0" stroke-linecap="round">
+      <path id="line-nw-se" d="M10,10 L90,90" stroke-width="20" stroke="#000"></path>
+      <path id="line-ne-sw" d="M90,10 L10,90" stroke-width="20" stroke="#000"></path>
+      <circle id="oval" stroke-width="1" fill="transparent" cx="50" cy="50" r="67"></circle>
+    </g>
+
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      dur="0.2s"
+      repeatCount="1"
+      begin="mouseover"
+      values="0 50 50; 90 50 50"
+    />
+  </g>
+</svg>
+
+<!-- There and back -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <g id="cross-icon-group" stroke-width="0">
+    <path id="line-nw-se" d="M32,32 L68,68" stroke-width="9" stroke-linecap="round" stroke="#000"></path>
+    <path id="line-ne-sw" d="M32,68 L68,32" stroke-width="9" stroke-linecap="round" stroke="#000"></path>
+    <circle id="oval" stroke-width="5" fill="transparent" stroke="#000" cx="50" cy="50" r="47.5"></circle>
+    <animateTransform
+      attributeName="transform"
+      attributeType="XML"
+      type="rotate"
+      dur=".8s"
+      begin="mouseover"
+      repeatCount="1"
+      values="0 50 50; 90 50 50; 0 50 50"
+      keyTimes="0; 0.7; 1"
+    />
+  </g>
+</svg>
