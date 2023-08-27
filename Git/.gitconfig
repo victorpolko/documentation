@@ -7,6 +7,9 @@
   name = Victor Polkó
   email = victorpolko@gmail.com
 
+[init]
+  defaultBranch = master
+
 [color]
   ui = true
   diff = true
@@ -55,8 +58,8 @@
 
   cod = !git checkout develop
   pod = !git pull origin develop
-  cof = !git checkout nylas-integration-poc
-  pof = !git pull origin nylas-integration-poc
+  cof = !git checkout some-feature-branch
+  pof = !git pull origin some-feature-branch
 
   stam = !git stash save
 
