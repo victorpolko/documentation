@@ -5,19 +5,25 @@ alias pxx='ps aux | grep -v grep | grep $1' # Search processes tree
 alias contains="grep -rnw '.' -e $1"        # Search for text in files of current directory
 alias tailf='tail -f'
 alias tailn='tail -n $1'
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias lsc='ls | wc -l '
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias lsc='ls | wc -l' # Count non-hidden folders
+alias count='ls | wc -l' # Count non-hidden folders
+
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+alias cry='crystal'
 
 # Ruby
 alias be='bundle exec' # Shortcut for Ruby bundler
+alias bes='be sidekiq' # Shortcut for sidekiq
 alias ber='be rails' # Shortcut for Rails commands
 alias berk='be rake' # Shortcut for Rake commands
 alias berkmig='berk db:migrate'
+alias berkroll='berk db:rollback'
+alias berkmigd='berk data:migrate'
+alias berkrolld='berk data:rollback'
 alias reindex='berk searchkick:reindex:all'
 alias reindexwork='berk searchkick:reindex CLASS=Work'
 
