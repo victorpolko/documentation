@@ -1,0 +1,40 @@
+export BUNDLER_EDITOR=subl
+export DISABLE_SPRING=true # Spring is nice, but it messes with me sometimes
+export PYTHON=python2
+
+# Enable color support of ls and also add handy aliases (Mac Os)
+export CLICOLOR=1
+export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+
+# Suppress Mac luring us to zsh. I didn't find anything useful there, just a lot of pain
+# Other way to avoid the warning is to update bash version: brew install bash
+# and use it as default shell. Be sure to update /etc/shells with this new bash executable path, or chsh won't do
+# export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/libffi/lib/pkgconfig"
+
+# export LDFLAGS="-L/usr/local/opt/libffi/lib"
+# export CPPFLAGS="-I/usr/local/opt/libffi/include"
+# export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+
+# To install pg gem
+export LDFLAGS="-L/usr/local/opt/libpq/lib"
+export CPPFLAGS="-I/usr/local/opt/libpq/include"
+
+export PATH="$PATH:/usr/local/opt"
+
+export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
+export N_PREFIX="/usr/local"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then PATH="$HOME/bin:$PATH"; fi
+
+# Setting PATH for Python 2.7
+# The original version is saved in .bash_profile.pysave
+export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+
+# RVM
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
