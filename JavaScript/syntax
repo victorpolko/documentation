@@ -1,4 +1,4 @@
-1.To define a FUNCTION
+1. To define a FUNCTION
     var functionName = function (arguments) {
         // {function body..}
     }
@@ -9,7 +9,7 @@
     // To save the RESULT of this function call (brackets tell it to be called! )
     var save = functionName(arguments);
 
-2.To define a CLASS
+2. To define a CLASS
     function someClass(prop1,prop2,propN) {
         this.prop1   = prop1;
         this.prop2   = prop2;
@@ -34,10 +34,10 @@
     var c = new someClass('AA', 23, true);
     c.setProp(false);
 
-3.Check error stacktrace
+3. Check error stacktrace
   console.log((new Error()).stack)
 
-4.Instead of using multistring things like:
+4. Instead of using multistring things like:
   var f = function(a) {return [0, a, 2*a]};
   var t = f(1);
   var result = t[2];  // 2
@@ -45,7 +45,7 @@
   // it is possible to use a shortcut, in this case:
   var result = function(a) { return [0,a,2*a] }(1)[2];
 
-5.Construction try->catch->finally
+5. Construction try->catch->finally
   try {
     // {Code to be checked for exceptions (syn. success)}
   }   catch   (error) {
@@ -56,7 +56,7 @@
     console.log('finished');
   }
 
-6.Common functions for undefined number of arguments may be got with {arguments} object
+6. Common functions for undefined number of arguments may be got with {arguments} object
   function sum() {
     var res = 0;
     for (var i = 0; i < arguments.length; i++) {
@@ -68,7 +68,7 @@
   console.log(sum(3, 4, 5));          // 12
   console.log(sum(3, 4, 5, 7, 9));    // 28
 
-7.Recursion in functions may be got with {arguments.callee} object
+7. Recursion in functions may be got with {arguments.callee} object
   var factorial = function(step, res) {
     res = res || 1;
     if (step < 2) {
@@ -78,7 +78,7 @@
   };
   console.log(factorial(5));          // 120
 
-8.Closures are used for inner functions to have access to outer functions variables
+8. Closures are used for inner functions to have access to outer functions variables
   var uniqueId = function() {
     var id = 0;
     return function() { return id++; };
@@ -86,7 +86,7 @@
   var aValue = uniqueId();
   var anotherValue = uniqueId();
 
-9.Closure for only-here usage
+9. Closure for only-here usage
   var getConstant = function() {
     var constants = {                         // With this method
       UPPER_BOUND: 100,                       // all these constants
@@ -98,7 +98,7 @@
   }();                                        // Here it is called right after creation
   alert(getConstant("LOWER_BOUND")); // -100
 
-10.Currying example (many arguments->each argument)
+10. Currying example (many arguments->each argument)
   var multNumber = function(arg) {
     return function(mul) {
       return arg * mul;
@@ -107,14 +107,14 @@
   var multFive = multNumber(5);
   console.log(multFive(7));           //35
 
-11.Bubbling
+11. Bubbling
   // By default, all events are worked out in order from the inner element to its highest parent.
-  // This may be omitted with the next counstruction:
+  // This may be omitted with the next construction:
   document.getElementById('uniqueId').addEventListener('click', function(event)   {
     event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);  // For cross-browser applications
   };
 
-12.Default behavior
+12. Default behavior
   // Default behavior of the browser may be omitted with this:
   document.getElementById('uniqueId').addEventListener('click', function(event)   {
     event.preventDefault ? event.preventDefault() : (event.returnValue = false); // For cross-browser applications

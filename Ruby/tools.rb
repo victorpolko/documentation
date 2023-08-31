@@ -83,7 +83,7 @@
   c = 3
   p (1..5).to_a.map2 { |b| b**2 + c } # => [4,7,12,19,28]
 
-  # Variable 'c' was sfound within this block, placeholder 'b' was instead 'a'
+  # Variable 'c' was found within this block, placeholder 'b' was instead 'a'
   # Which is so terrifying for our brain!!!
 
 # 11. Lambdas

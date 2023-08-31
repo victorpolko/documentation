@@ -33,6 +33,6 @@ List all processes                                          ps [-e  ||  ax]
 Close a process                                             kill    [-9 == force]   [PID    ||  CMD]
 Output the last 200 strings of file & follow it             tail -nf 200 [pathToFile]
 Give rights to a certain folder to another user             sudo -R chown [username]:[usergroup] [pathToFolder]
-Add private SSH-key ssh-add                                 ~/.ssh/id_rsa
+Add private SSH-key                                         ssh-add ~/.ssh/id_rsa
 
 Terminal log                                                /home/victor/bash_history

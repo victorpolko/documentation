@@ -1,7 +1,7 @@
 # To deploy over stage
   bundle exec cap staging deploy
 
-# Unicorn sometimes fails so that assets are not foud. In that case
+# Unicorn sometimes fails so that assets are not found. In that case
 # This will restart Unicorn
   bundle exec cap staging deploy:stop
   bundle exec cap staging deploy:start

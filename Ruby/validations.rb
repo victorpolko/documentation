@@ -1,5 +1,4 @@
 # 1. Helpers:
-
   # 1)  # Accept license
     validates :license, acceptance: true
   # 2)  # Validate all associated models
@@ -75,7 +74,6 @@
 
 
 # 2. Validation options:
-
   # 1)  # Skip the validation when the value being validated is nil
     validates :size, inclusion: {
       in: %w(small medium large),
@@ -106,9 +104,7 @@
       if: ["market.retail?", :desktop?]
       unless: Proc.new { |c| c.trackpad.present? }
 
-
 # 3. Custom validators:
-
   # Must define {validate} method
   class MyValidator < ActiveModel::Validator
     def validate(record)
@@ -124,7 +120,6 @@
 
 
 # 4. Custom methods:
-
   class Invoice < ActiveRecord::Base
     validate :expiration_date_cannot_be_in_the_past,
       :discount_cannot_be_greater_than_total_value
