@@ -1,0 +1,94 @@
+{
+  "breadcrumbs.icons": false,
+  "breadcrumbs.symbolPath": "off",
+
+  "editor.accessibilitySupport": "off",
+  "editor.autoClosingDelete": "always",
+  "editor.bracketPairColorization.enabled": false,
+  "editor.codeLens": false,
+  "editor.cursorBlinking": "phase",
+  "editor.dragAndDrop": false,
+  "editor.fontFamily": "JetBrainsMono-Light, FiraCode-Regular, DejaVuSansMono, SourceCodePro-Regular, ProggyVector, ProggyCleanTT, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 22,
+  "editor.links": false,
+  "editor.maxTokenizationLineLength": 300,
+  "editor.minimap.showSlider": "always",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.occurrencesHighlight": "off",
+  "editor.quickSuggestions": {
+    "other": "off"
+  },
+  "editor.rulers": [
+    110
+  ],
+  "editor.scrollbar.horizontalScrollbarSize": 10,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.scrollbar.verticalScrollbarSize": 5,
+  "editor.stickyScroll.enabled": false,
+  "editor.suggest.localityBonus": true,
+  "editor.suggestSelection": "recentlyUsed",
+  "editor.tabCompletion": "on",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "editor.wordWrapColumn": 90,
+
+  "explorer.confirmDelete": false,
+
+  "files.autoSave": "onFocusChange",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "files.enableTrash": false,
+
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.showWhatsNewAfterUpgrades": false,
+  "gitlens.statusBar.enabled": false,
+
+  "python.defaultInterpreterPath": "python3",
+
+  "search.maxResults": 500,
+  "search.mode": "newEditor",
+  "search.searchEditor.reusePriorSearchConfiguration": true,
+  "search.searchOnType": false,
+
+  "security.workspace.trust.untrustedFiles": "open",
+
+  "workbench.activityBar.location": "hidden",
+  "workbench.colorTheme": "Customonokai",
+  "workbench.commandPalette.history": 9,
+  "workbench.commandPalette.preserveInput": true,
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.editor.mouseBackForwardToNavigate": false,
+  "workbench.editor.restoreViewState": false,
+  "workbench.editor.tabActionCloseVisibility": false,
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.layoutControl.enabled": false,
+  "workbench.list.fastScrollSensitivity": 2,
+  "workbench.list.mouseWheelScrollSensitivity": 0.2,
+  "workbench.quickOpen.preserveInput": true,
+  "workbench.reduceMotion": "on",
+  "workbench.settings.openDefaultKeybindings": true,
+  "workbench.settings.openDefaultSettings": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.tips.enabled": false,
+  "workbench.tree.indent": 14,
+  "workbench.tree.renderIndentGuides": "always",
+
+  "window.closeWhenEmpty": true,
+  "window.commandCenter": true,
+  "window.title": "${activeEditorMedium}${separator}${rootName}${separator}${profileName}",
+  "window.titleSeparator": " ~ ",
+  "window.zoomLevel": -1,
+  "window.zoomPerWindow": false,
+
+  "[javascript]": {
+    "editor.semanticHighlighting.enabled": true,
+    "editor.tabSize": 2,
+  },
+
+  "[python]": {
+    "editor.formatOnType": true
+  },
+}

@@ -1,0 +1,47 @@
+{
+	"debug": {
+		"prefix": ["deb", "pry"],
+		"body": [
+			"binding.pry${1: if Rails.env.development?}"
+		],
+		"description": "Debug ruby code"
+	},
+
+	"debug once": {
+		"prefix": "debo",
+		"body": [
+			"__will_bind__ = true",
+			"binding.pry${1: if Rails.env.development? && __will_bind__}",
+			"__will_bind__ = false"
+		],
+		"description": "Debug ruby code once"
+	},
+
+	"console.log": {
+		"prefix": "log",
+		"body": [
+			"puts $0"
+		],
+		"description": "Console log"
+	},
+
+	"empty block": {
+		"prefix": "doo",
+		"body": [
+			"do",
+			"  $0",
+			"end"
+		],
+		"description": "Add empty block without params"
+	},
+
+	"block with params": {
+		"prefix": "dob",
+		"body": [
+			"do |${1:x}|",
+			"  $0",
+			"end"
+		],
+		"description": "Add empty block with params"
+	},
+}

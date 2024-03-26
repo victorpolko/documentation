@@ -1,0 +1,27 @@
+{
+	"name": "theme-customonokia",
+	"displayName": "Customokai",
+	"description": "Customized Monokai looking like ST Stereokai",
+	"version": "1.0.0",
+	"publisher": "victorpolko",
+	"keywords": [
+		"monokai",
+		"theme",
+		"vscode"
+	],
+	"engines": {
+		"vscode": "^0.10.1"
+	},
+	"categories": [
+		"Themes"
+	],
+	"contributes": {
+		"themes": [
+			{
+				"label": "Customonokai",
+				"uiTheme": "vs-dark",
+				"path": "./themes/customonokai-color-theme.json"
+			}
+		]
+	}
+}

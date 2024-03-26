@@ -1,0 +1,19 @@
+{
+	"lorem ipsum": {
+		"scope": "",
+		"prefix": "lorem",
+		"body": [
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+		],
+		"description": "Lorem ipsum in original Latin"
+	},
+
+	"lorem ipsum íslenska": {
+		"scope": "",
+		"prefix": "loremis",
+		"body": [
+			"Lorem ipsum að gefa fleiri nútíma útlit efni. en of margir voru að leita til að lesa texta þegar það var í frönsku eða ensku, tilætluð áhrif var ekki náð. vinna með læsileg texta, sem inniheldur leiðbeiningar getur valdið truflun og það getur hjálpað til við að leggja áherslu á skipulag. Það virðist sem aðeins nokkur brot úr frumtexta birtast í Lipsum almennt notuð, og að röð af bréfum hafa verið fjarlægð eða bætt á ýmsum stöðum í textanum tímanum. Þetta er hvers vegna það eru nú á dögum að tala um texta Lorem ipsum meira eða minna frábrugðin hvert öðru. Vegna framleiðslu dagsetning, notkun Lorem ipsum er ekki lengur háð höfundarrétti og forðast höfundarrétti málefni."
+		],
+		"description": "Lorem ipsum in Íslenska"
+	},
+}

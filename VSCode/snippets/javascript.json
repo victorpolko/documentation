@@ -1,0 +1,51 @@
+{
+	"console.log": {
+		"prefix": "log",
+		"body": [
+			"console.log($0);"
+		],
+		"description": "log things to the console for consolation"
+	},
+
+	"function": {
+		"prefix": ["fu", "fun", "func"],
+		"body": [
+			"function ${1:App}($2) {$3}"
+		],
+		"description": "function declaration"
+	},
+
+	"const": {
+		"prefix": ["co", "con", "cons", "const"],
+		"body": [
+			"const ${1:constName} = ${2:null};"
+		],
+		"description": "const statement"
+	},
+
+	"import": {
+		"prefix": ["im", "imp"],
+		"body": [
+			"import { ${1:useState} } from '${2:react}';"
+		],
+		"description": "import statement"
+	},
+
+	"arrow function": {
+		"prefix": ["af", "fa"],
+		"body": [
+			"(${1:}) => {${0:}};"
+		],
+		"description": "arrow function expression"
+	},
+
+	"iife": {
+		"prefix": "iife",
+		"body": [
+			"(function() {",
+			"  ${0:// do some things?}",
+			"}());"
+		],
+		"description": "immediately invoked function expression (no dog balls)"
+	},
+}
